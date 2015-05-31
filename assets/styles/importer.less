@@ -28,3 +28,52 @@
 // @import 'pages/signup.less';
 //
 // etc.
+
+*, body{
+  margin: 0;
+  border: 0;
+}
+
+#cover-photo {
+  margin-top: -2em;
+  background-color: #000;
+  padding-bottom: 1em;
+}
+
+#cover-photo::after {
+ content: "";
+ background-image: url("http://boweryboyshistory.com/wp-content/uploads/2014/12/1103.jpg");
+ background-repeat: no-repeat;
+ background-size: cover;
+ opacity: 0.6;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+ position: absolute;
+ z-index: -1;
+}
+
+.front-page-buttons {
+  margin: 20% 35%;
+}
+
+.btn-default {
+  width: 15em;
+  border: 1px solid black;
+  color: black;
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+.leaflet-popup-content {
+  width: 500px !important;
+  overflow: scroll;
+  max-height: 300px;
+  font-size: 14px;
+  font-family: Helvetica;
+}
+
+.leaflet-popup-tip {
+  display-none: !important;
+}
