@@ -21,9 +21,9 @@ attributes: {
       type: 'string',
       required: true
     },
-    /// association - belongs to User
-    user: {
-      model: 'User'
+    /// association - belongs to Project
+    project: {
+      model: 'Project'
     },
     projects: {
       collection: 'Project',

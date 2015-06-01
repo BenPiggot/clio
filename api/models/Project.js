@@ -20,7 +20,8 @@ module.exports = {
       model: 'User'
     },
     student: {
-      model: "Student"
+      collection: 'Student',
+      via: 'project'
     },
     maps: {
       collection: 'Map',

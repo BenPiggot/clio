@@ -1,9 +1,18 @@
-var ClioApp = angular.module('ClioApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'leaflet-directive']);
+var ClioApp = angular.module('ClioApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'leaflet-directive', 'pippTimelineDirectives']);
 
-ClioApp.run(['$rootScope', function($rootScope) {
+
+ClioApp.run(['$rootScope', 'UserService', 'AlertService', function($rootScope, UserService, AlertService) {
   console.log('app is up and running')
 
-  }]);
+      $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        AlertService.clear()
+      });
+
+      UserService.check(function(err, data) {
+        console.log('check', err, data)
+      });
+
+}]);
 
 
 
@@ -23,6 +32,10 @@ ClioApp.config(['$routeProvider', '$locationProvider', function($routeProvider, 
   .when('/maps', {
     templateUrl: '/views/maps/index.html',
     controller: 'MapCtrl'
+  })
+  .when('/timeline', {
+    templateUrl: '/views/timeline/index.html',
+    controller: 'TimelineCtrl'
   })
   .when('/about', {
     templateUrl: '/views/about.html',

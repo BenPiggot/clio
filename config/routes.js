@@ -35,9 +35,9 @@ module.exports.routes = {
   '/': 'PagesController.index',
   // 'post /api/post/:postId/comments': 'PostController.addComment',
 
-  // 'get /api/auth': 'AuthController.check',
-  // 'post /api/auth': 'AuthController.login',
-  // 'delete /api/auth': 'AuthController.logout',
+  'get /api/auth': 'AuthController.check',
+  'post /api/auth': 'AuthController.login',
+  'delete /api/auth': 'AuthController.logout',
 
   "get *":{
     controller:"PagesController",

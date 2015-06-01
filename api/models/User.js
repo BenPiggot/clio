@@ -28,10 +28,6 @@ module.exports = {
       minLength: 6,
       required: true
     },
-    student: {
-      collection: 'Student',
-      via: 'user'
-    },
     project: {
       collection: 'Project',
       via: 'user'

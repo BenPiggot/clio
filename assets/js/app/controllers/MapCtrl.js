@@ -2,7 +2,7 @@ ClioApp.controller('MapCtrl',['$scope','$modal',  function($scope,$modal) {
 
 
       angular.extend($scope, {
-              osloCenter: {
+              center: {
                   lat: 59.91,
                   lng: 10.75,
                   zoom: 12
