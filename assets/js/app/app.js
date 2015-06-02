@@ -37,16 +37,20 @@ ClioApp.config(['$routeProvider', '$locationProvider', function($routeProvider, 
     templateUrl: '/views/maps/index.html',
     controller: 'MapCtrl'
   })
-  .when('/projects/:id/maps/:id', {
+  .when('/projects/:projectId/maps/:id', {
     templateUrl: '/views/maps/show.html',
     controller: 'MapShowCtrl'
   })
-  .when('/projects/:id/timelines', {
-    templateUrl: '/views/timelines/index.html',
+  .when('/projects/:id/timeline', {
+    templateUrl: '/views/timeline/index.html',
     controller: 'TimelineCtrl'
   })
-  .when('/projects/:id/discussions', {
-    templateUrl: '/views/discussions/index.html',
+  // .when('/projects/:id/timeline', {
+  //   templateUrl: '/views/timeline/show.html',
+  //   controller: 'TimelineShowCtrl'
+  // })
+  .when('/projects/:id/discussion', {
+    templateUrl: '/views/discussion/index.html',
     controller: 'DiscussionCtrl'
   })
   .when('/about', {

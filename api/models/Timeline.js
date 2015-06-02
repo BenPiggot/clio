@@ -20,6 +20,9 @@ module.exports = {
     endYear: {
       type: 'date'
     },
+    medium: {
+      type: 'string'
+    },
     project: {
       model: 'Project'
     },

@@ -1,0 +1,18 @@
+<div class="container">
+
+<h1>{{project.name}}</h1>
+<h4>Discussion Board</h4>
+<hr>
+<li ng-repeat="post in posts" class="list-group-item">
+          <em> {{post.createdAt | date: 'short'}}</em></br>
+           {{post.post}}
+
+</li>
+<hr>
+  <form  class="form" ng-submit="addPost()">
+    <div class="form-group">
+      <textarea class="form-control" ng-model="post"></textarea>
+    </div>
+    <button class="btn btn-primary">Post</button>
+  <form>
+</div>

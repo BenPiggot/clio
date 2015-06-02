@@ -7,6 +7,12 @@
  */
 
 module.exports = {
-
+// findMap: function(req, res) {
+//   Map.find({
+//     id: req.params.id
+//   }).then(function(data) {
+//     console.log(data)
+//   })
+//   }
 };
 

@@ -8,6 +8,7 @@ ClioApp.controller('AddMapModalCtrl', ['$scope', 'UserService', '$modalInstance'
     $scope.addMap = function() {
       console.log('awesome')
       var map = new AddMap()
+      map.name = $scope.name;
       map.country = $scope.country;
       map.city = $scope.city;
       map.zoom = $scope.zoom;

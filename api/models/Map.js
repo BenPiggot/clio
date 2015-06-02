@@ -10,6 +10,9 @@ var geocoder = require('geocoder');
 module.exports = {
 
   attributes: {
+    name :{
+      type: 'string'
+    },
     country: {
       type: 'string'
     },

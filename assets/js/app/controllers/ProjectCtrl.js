@@ -1,5 +1,12 @@
-ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService', 'Project',
-  function($scope, $rootScope, $modal, AlertService, Project) {
+ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', 'UserService',
+  function($scope, $rootScope, $modal, AlertService, Project, UserService) {
+
+  $scope.UserService = UserService;
+
+  $scope.$watchCollection('UserService', function() {
+    $scope.currentUser = UserService.currentUser;
+
+  })
 
   $scope.projects = [];
 

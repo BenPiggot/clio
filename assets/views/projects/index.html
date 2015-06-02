@@ -5,15 +5,14 @@
 
 <div class="shadow-cover">
   <div class="container" ng-controller="ProjectCtrl">
-      <h1 class="white-text">Hello Project World</h1>
+      <h1 class="white-text">Welcome to Clio</h1>
+      <hr class="white-test">
       <alerts></alerts>
-      <a class="btn btn-info" href="/maps">Link to Maps</a>
-      <a class="btn btn-info" href="/timeline">Link to Timeline</a>
+      <h3 class="white-text">Recent Projects</h3>
+        <li class="white-text" ng-repeat="project in projects">
+        <a class="white-text" ng-href="/projects/{{project.id}}">{{project.name}}</a>
+        </li>
+      <hr class="white-test">
       <button ng-click="newProject()" class="btn btn-primary">Start a New Project</button>
-      <h3 class="white-text">Projects</h3>
-      <li class="white-text" ng-repeat="project in projects">
-      <a class="white-text" ng-href="/projects/{{project.id}}">{{project.name}}</a>
-      </li>
-
   </div>
 </div>

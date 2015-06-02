@@ -33,7 +33,8 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': 'PagesController.index',
-  // 'post /api/project/:postId/map': 'PostController.addComment',
+
+  'get /api/project/:projectId/maps/:id': 'MapController.findMap',
 
   'get /api/auth': 'AuthController.check',
   'post /api/auth': 'AuthController.login',

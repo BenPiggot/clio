@@ -8,6 +8,15 @@
 module.exports = {
 
   attributes: {
+    title: {
+      type: 'string'
+    },
+    startYear: {
+      type: 'date'
+    },
+    endYear: {
+      type: 'date'
+    },
     text: {
       type: 'text'
     },

@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h3 class="modal-title">Add an Event</h3>
+</div>
+<div class="modal-body">
+  <form class="form" ng-submit="addEvent()">
+    <div class="form-group">
+      <label>Event Name</label>
+      <input class="form-control" ng-model="name"></input>
+      <label>Description</label>
+      <input class="form-control" ng-model="text"></input>
+      <label>Start Date</label>
+      <input class="form-control" ng-model="startYear"></input>
+      <label>End Date (same as start date if a one day event)</label>
+      <input class="form-control" ng-model="endYear"></input>
+      <label>Image Link </label>
+      <input class="form-control" ng-model="medium"></input>
+    </div>
+    <button class="btn btn-primary">Add</button>
+  </form>
+</div>

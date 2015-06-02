@@ -1,11 +1,15 @@
 ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Map', function($scope, $modal, $routeParams, Project, Map) {
 
   $scope.mapShow = false;
+  console.log('route params!!',$routeParams)
 
-  Project.get({id: $routeParams.id}, function(data) {
-    console.log(data)
-    $scope.project = data
-     $scope.mapRenderInit($scope.project.maps[0].latitude, $scope.project.maps[0].longitude, $scope.project.maps[0].zoom)
+  Map.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
+
+    $scope.map = data[0]
+    console.log('map',$scope.map)
+    console.log('data',data)
+     $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom)
+     console.log('$scope',$scope);
     });
 
 

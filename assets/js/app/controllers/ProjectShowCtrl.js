@@ -13,6 +13,11 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
       $scope.project = data
     });
 
+  // var buildTimeline = true;
+
+  // if ($scope.project.timeline) {
+  //   buildTimeline = false;
+  // }
 
   $scope.newStudent = function() {
     if (UserService.currentUser) {
@@ -42,6 +47,20 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
       $scope.project = data
     });
   })
+  }
+
+    $scope.newTimeline = function() {
+
+      $modal.open({
+        templateUrl: '/views/projects/addTimelineModal.html',
+        controller: 'AddTimelineModalCtrl'
+      }).result.then(function(){
+        Project.get({id: $routeParams.id}, function(data) {
+        console.log(data)
+        $scope.project = data
+      });
+      });
+
   }
 
 
