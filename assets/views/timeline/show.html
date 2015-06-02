@@ -1,12 +1,20 @@
-<div ng-controller="TimelineCtrl">
-<pipp-timeline-j-s source="timelineData"
-                   height="570"
-                   width="98%"
-                   start-zoom-adjust="0"
-                   start-at-end="false"
-                   start-at-slide="0"
-                   hash-bookmark="false"
-                   font="Helvetica"
-                   lang="en"
-                   debug="false"></pipp-timeline-j-s>
+<div ng-controller="TimelineShowCtrl">
 
+  <div class="container">
+  <button class="btn btn-primary pull-right top-margin" ng-click="newEvent()">Add an Event</button>
+  </div>
+
+  <pipp-timeline-j-s source="timelineData"
+                     height="570"
+                     width="98%"
+                     start-zoom-adjust="0"
+                     start-at-end="false"
+                     start-at-slide="0"
+                     hash-bookmark="false"
+                     font="Helvetica"
+                     lang="en"
+                     debug="false"></pipp-timeline-j-s>
+
+
+
+</div>

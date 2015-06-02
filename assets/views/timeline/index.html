@@ -1,17 +1,15 @@
- <div class="container">
-  <h1>Hello Timeline World</h1>
-  <button class="btn btn-primary" ng-click="newEvent()">Add Event</button>
+ <div id="project-photo">
+
 </div>
 
-<div ng-controller="TimelineCtrl">
-<pipp-timeline-j-s source="timelineData"
-                   height="570"
-                   width="98%"
-                   start-zoom-adjust="0"
-                   start-at-end="false"
-                   start-at-slide="0"
-                   hash-bookmark="false"
-                   font="Helvetica"
-                   lang="en"
-                   debug="false"></pipp-timeline-j-s>
+<div class="shadow-cover">
+
+ <div class="container">
+  <h1 class="white-text">Timelines for "{{project.name}}"</h1>
+  <button class="btn btn-primary" ng-click="newTimeline()">New Timeline</button>
+  <li ng-repeat="timeline in project.timelines">
+    <a class="white-text" ng-href="/projects/{{project.id}}/timeline/{{timeline.id}}">{{timeline.title}}</a>
+   </li>
+</div>
+</div>
 

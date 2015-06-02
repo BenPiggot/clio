@@ -13,6 +13,9 @@ module.exports = {
     name :{
       type: 'string'
     },
+    description: {
+      type: 'text'
+    },
     country: {
       type: 'string'
     },

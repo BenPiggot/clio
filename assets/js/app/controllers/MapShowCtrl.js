@@ -1,15 +1,11 @@
 ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Map', function($scope, $modal, $routeParams, Project, Map) {
 
   $scope.mapShow = false;
-  console.log('route params!!',$routeParams)
+
 
   Map.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
-
-    $scope.map = data[0]
-    console.log('map',$scope.map)
-    console.log('data',data)
+     $scope.map = data[0]
      $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom)
-     console.log('$scope',$scope);
     });
 
 
@@ -24,5 +20,16 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
       })
       $scope.mapShow = true;
     }
+
+  $scope.newMarker = function() {
+    console.log('new marker!!!!!')
+    $modal.open({
+      templateUrl:'/views/maps/mapMarkerModal.html',
+      controller: 'MapMarkerModalCtrl'
+    }).result.then(function(){
+        TimelineCreate()
+
+    });
+  };
 
 }])

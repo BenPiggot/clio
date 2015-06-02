@@ -45,10 +45,10 @@ ClioApp.config(['$routeProvider', '$locationProvider', function($routeProvider, 
     templateUrl: '/views/timeline/index.html',
     controller: 'TimelineCtrl'
   })
-  // .when('/projects/:id/timeline', {
-  //   templateUrl: '/views/timeline/show.html',
-  //   controller: 'TimelineShowCtrl'
-  // })
+  .when('/projects/:projectId/timeline/:id', {
+    templateUrl: '/views/timeline/show.html',
+    controller: 'TimelineShowCtrl'
+  })
   .when('/projects/:id/discussion', {
     templateUrl: '/views/discussion/index.html',
     controller: 'DiscussionCtrl'

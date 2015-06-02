@@ -5,15 +5,6 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', func
     $scope.project = data
     });
 
-  //     if ($scope.project.maps) {
-  //       $scope.mapRenderInit($scope.project.maps[0].latitude, $scope.project.maps[0].longitude, $scope.project.maps[0].zoom)
-  //     } else {
-
-  //     }
-
-  // });
-
-
   $scope.mapRenderInit = function(lat, lng, zoom) {
 
       angular.extend($scope, {

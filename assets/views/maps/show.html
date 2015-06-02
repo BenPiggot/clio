@@ -1,4 +1,7 @@
 <leaflet ng-if="mapShow" center="center" markers="markers" width="1200px" height="350px"></leaflet>
 <div class="container">
-  <h1>Hello World</h1>
+  <h1>{{map.name}}</h1>
+  <p>{{map.description}}</p>
+  <hr>
+  <button class="btn btn-primary" ng-click="newMarker()">Add an Event to the Map</button>
 </div>
