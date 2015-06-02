@@ -12,6 +12,8 @@
       <button ng-click="newProject()" class="btn btn-primary">Start a New Project</button>
       <h3 class="white-text">Projects</h3>
       <li class="white-text" ng-repeat="project in projects">
+      <a class="white-text" ng-href="/projects/{{project.id}}">{{project.name}}</a>
+      </li>
 
   </div>
 </div>

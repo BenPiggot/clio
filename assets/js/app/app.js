@@ -39,7 +39,7 @@ ClioApp.config(['$routeProvider', '$locationProvider', function($routeProvider, 
   })
   .when('/projects/:id/maps/:id', {
     templateUrl: '/views/maps/show.html',
-    controller: 'DiscussionCtrl'
+    controller: 'MapShowCtrl'
   })
   .when('/projects/:id/timelines', {
     templateUrl: '/views/timelines/index.html',
