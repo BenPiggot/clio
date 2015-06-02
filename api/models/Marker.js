@@ -1,3 +1,5 @@
+var geocoder = require('geocoder');
+
 /**
 * Marker.js
 *
@@ -35,30 +37,16 @@ module.exports = {
 
   },
   beforeCreate: function(marker, callback) {
-    if (marker.address) {
+
       geocoder.geocode(marker.address, function(err,data) {
         if (err) { callback(err,null) }
         marker.latitude = data.results[0].geometry.location.lat;
         marker.longitude = data.results[0].geometry.location.lng;
-        callback(null,map);
+        callback(null,marker);
       })
-    } else if (marker.city) {
-        geocoder.geocode(marker.city, function(err,data) {
-        if (err) { callback(err,null) }
-        marker.latitude = data.results[0].geometry.location.lat;
-        marker.longitude = data.results[0].geometry.location.lng;
-        callback(null,map);
-      })
-   }
-   else {
-        geocoder.geocode(marker.country, function(err,data) {
-        if (err) { callback(err,null) }
-        marker.latitude = data.results[0].geometry.location.lat;
-        marker.longitude = data.results[0].geometry.location.lng;
-        callback(null,map);
-      })
-   }
-  }
+  //       geocoder.geocode(marker.city, function(err,data) {
+  // }
 
-};
+  }
+}
 

@@ -26,8 +26,9 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
     $modal.open({
       templateUrl:'/views/maps/mapMarkerModal.html',
       controller: 'MapMarkerModalCtrl'
-    }).result.then(function(){
-        TimelineCreate()
+    }).result.then(function(data){
+        console.log("added")
+        console.log(data)
 
     });
   };

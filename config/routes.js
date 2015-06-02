@@ -34,7 +34,6 @@ module.exports.routes = {
 
   '/': 'PagesController.index',
 
-  'get /api/project/:projectId/maps/:id': 'MapController.findMap',
 
   'get /api/auth': 'AuthController.check',
   'post /api/auth': 'AuthController.login',
