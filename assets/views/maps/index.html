@@ -1,6 +1,10 @@
-<div ng-controller="MapCtrl">
-<leaflet center="center" markers="markers" width="1200px" height="400px"></leaflet>
+
+
+<leaflet center="center" markers="markers" width="1200px" height="350px"></leaflet>
 <div class="container">
-<h1>Maps are great</h1>
-</div>
+<h1>Build a Map</h1>
+   <button ng-click="newMap()" class="btn btn-info map-btn">Create Project Map</button>
+   <li ng-repeat="map in project.maps">
+    <a ng-href="/projects/{{project.id}}/maps/{{map.id}}">{{map.city}}</a>
+   </li>
 </div>

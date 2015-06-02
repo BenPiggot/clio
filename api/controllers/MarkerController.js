@@ -1,3 +1,4 @@
+var geocoder = require('geocoder');
 /**
  * MarkerController
  *
@@ -6,6 +7,6 @@
  */
 
 module.exports = {
-	
+
 };
 

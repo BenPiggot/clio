@@ -23,7 +23,7 @@ module.exports = {
     project: {
       model: 'Project'
     },
-    event: {
+    events: {
       collection: 'Event',
       via: 'timeline'
     }

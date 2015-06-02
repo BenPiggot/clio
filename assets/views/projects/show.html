@@ -2,11 +2,13 @@
 
 <h1> {{project.name}}</h1>
 <p> {{project.description}} </p>
-   <a class="btn btn-info" href="/maps">Add a Map</a>
-   <a class="btn btn-info" href="/timeline">Add a Timeline</a>
+   <a class="btn btn-info" href="/projects/{{project.id}}/maps">Build a Map</a>
+   <a class="btn btn-info" href="/projects/{{project.id}}/timelines">Build a Timeline</a>
+  <a class="btn btn-info" href="/projects/{{project.id}}/discussions">Start a Discussion</a>
    <button ng-click="newPost()" class="btn btn-info">Edit Project Details</button>
 <hr>
-<h4>Students</h4>
+<h2>Students</h2>
+<alerts></alerts>
 <table class="table">
       <thead>
         <tr>
@@ -16,7 +18,7 @@
           <th>Added On</th>
       </thead>
       <tbody>
-        <tr ng-repeat="student in project.student">
+        <tr ng-repeat="student in project.students">
           <td>{{student.firstName}}</td>
           <td>{{student.lastName}}</td>
           <td>{{student.email}}</td>

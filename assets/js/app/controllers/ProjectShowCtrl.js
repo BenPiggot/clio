@@ -15,15 +15,20 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
 
 
   $scope.newStudent = function() {
-    $modal.open({
-      templateUrl: '/views/projects/addStudentModal.html',
-      controller: 'AddStudentModalCtrl'
-    }).result.then(function(){
-      Project.get({id: $routeParams.id}, function(data) {
-      console.log(data)
-      $scope.project = data
-    });
-    });
+    if (UserService.currentUser) {
+      $modal.open({
+        templateUrl: '/views/projects/addStudentModal.html',
+        controller: 'AddStudentModalCtrl'
+      }).result.then(function(){
+        Project.get({id: $routeParams.id}, function(data) {
+        console.log(data)
+        $scope.project = data
+      });
+      });
+    }
+    else {
+      AlertService.add('danger', 'You cannot add a new student.')
+    }
   }
 
 

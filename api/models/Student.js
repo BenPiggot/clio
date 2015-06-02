@@ -24,10 +24,6 @@ attributes: {
     /// association - belongs to Project
     project: {
       model: 'Project'
-    },
-    projects: {
-      collection: 'Project',
-      via: 'student'
     }
   }
 };

@@ -8,7 +8,12 @@
 module.exports = {
 
   attributes: {
-
+      post: {
+        type: 'string'
+      },
+      project: {
+        model: "Project"
+    }
   }
 };
 

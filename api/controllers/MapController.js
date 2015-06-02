@@ -1,3 +1,4 @@
+
 /**
  * MapController
  *
@@ -6,6 +7,6 @@
  */
 
 module.exports = {
-	
+
 };
 

@@ -1,3 +1,5 @@
+var geocoder = require('geocoder');
+
 /**
 * Map.js
 *
@@ -29,10 +31,27 @@ module.exports = {
     project: {
       model: "Project"
     },
-    marker: {
+    markers: {
       collection: 'Marker',
       via: 'map'
     }
+  },
+  beforeCreate: function(map, callback) {
+    if (map.city) {
+      geocoder.geocode(map.city, function(err,data) {
+        if (err) { callback(err,null) }
+        map.latitude = data.results[0].geometry.location.lat;
+        map.longitude = data.results[0].geometry.location.lng;
+        callback(null,map);
+      })
+    } else {
+        geocoder.geocode(map.country, function(err,data) {
+        if (err) { callback(err,null) }
+        map.latitude = data.results[0].geometry.location.lat;
+        map.longitude = data.results[0].geometry.location.lng;
+        callback(null,map);
+      })
+   }
   }
 };
 

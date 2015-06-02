@@ -19,7 +19,7 @@ module.exports = {
    user: {
       model: 'User'
     },
-    student: {
+    students: {
       collection: 'Student',
       via: 'project'
     },
@@ -29,6 +29,10 @@ module.exports = {
     },
     timelines: {
       collection: 'Timeline',
+      via: 'project'
+    },
+    discussions: {
+      collection: 'Discussion',
       via: 'project'
     }
   }

@@ -33,26 +33,26 @@ ClioApp.config(['$routeProvider', '$locationProvider', function($routeProvider, 
     templateUrl: '/views/projects/show.html',
     controller: 'ProjectShowCtrl'
   })
-  .when('/maps', {
+  .when('/projects/:id/maps', {
     templateUrl: '/views/maps/index.html',
     controller: 'MapCtrl'
   })
-  .when('/timeline', {
-    templateUrl: '/views/timeline/index.html',
+  .when('/projects/:id/maps/:id', {
+    templateUrl: '/views/maps/show.html',
+    controller: 'DiscussionCtrl'
+  })
+  .when('/projects/:id/timelines', {
+    templateUrl: '/views/timelines/index.html',
     controller: 'TimelineCtrl'
+  })
+  .when('/projects/:id/discussions', {
+    templateUrl: '/views/discussions/index.html',
+    controller: 'DiscussionCtrl'
   })
   .when('/about', {
     templateUrl: '/views/about.html',
     controller: 'StaticCtrl'
   })
-  // .when('/post/:id', {
-  //   templateUrl: '/views/post/show.html',
-  //   controller: 'PostShowCtrl'
-  // })
-  // .when('/edit/:id', {
-  //   templateUrl: '/views/post/edit.html',
-  //   controller: 'PostEditCtrl'
-  // })
   .otherwise({
     templateUrl: '/views/404.html'
   })

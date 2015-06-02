@@ -14,9 +14,6 @@ ClioApp.controller('AddStudentModalCtrl', ['$scope', 'UserService', '$modalInsta
       student.$save({projectId: $scope.project.id}, function(data) {
         console.log('student added')
         $scope.project = data;
-        $scope.firstName = "";
-        $scope.lastName = "";
-        $scope.email = "";
         $modalInstance.close();
       })
     }
