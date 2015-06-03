@@ -11,14 +11,14 @@ module.exports = {
     title: {
       type: 'string'
     },
+    text: {
+      type: 'text'
+    },
     startYear: {
       type: 'date'
     },
     endYear: {
       type: 'date'
-    },
-    text: {
-      type: 'text'
     },
     medium: {
       type: 'string'

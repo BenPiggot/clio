@@ -5,23 +5,23 @@ ClioApp.controller('TimelineShowCtrl',['$scope','$modal', '$routeParams', 'Proje
 var TimelineCreate = function() {
   Timeline.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
     console.log(data[0])
-    $scope.project = data[0]
+    $scope.timeline = data[0]
 
           $scope.timelineData = {
             "timeline":
             {
-              "headline": $scope.project.title,
+              "headline": $scope.timeline.title,
               "type":"default",
-              "text": $scope.project.description,
+              "text": $scope.timeline.description,
               "asset": {
-                "media":$scope.project.medium,
+                "media":$scope.timeline.medium,
                 // "credit":"Credit Name Goes Here",
                 // "caption":"Caption text goes here"
               },
               "date": [
                 {
-                  "startDate":$scope.project.startYear,
-                  "endDate":$scope.project.endYear,
+                  "startDate":$scope.timeline.startYear,
+                  "endDate":$scope.timeline.endYear,
                   "headline":"Giroud, Ramsey, and Flamini",
                   "text":"<p>Body text goes here, some HTML is OK</p>",
                   "tag":"This is Optional",

@@ -1,10 +1,11 @@
-ClioApp.controller('TimelineEventModalCtrl', ['$scope', 'UserService', '$modalInstance',  'Project', '$routeParams', 'Timeline',
-  function($scope, UserService, $modalInstance, Project, $routeParams, Timeline) {
+ClioApp.controller('TimelineEventModalCtrl', ['$scope', 'UserService', '$modalInstance',  'Project', '$routeParams', 'Timeline', 'AddEvent',
+  function($scope, UserService, $modalInstance, Project, $routeParams, Timeline, AddEvent) {
 
 console.log($routeParams)
-  Project.get({id: $routeParams.id}, function(data) {
-    console.log(data.timelines[0])
-    $scope.timeline = data.timelines[0]
+
+  Timeline.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
+    console.log(data[0])
+    $scope.timeline = data[0]
   })
 
     $scope.addEvent = function() {
@@ -15,8 +16,9 @@ console.log($routeParams)
       event.startYear = $scope.startYear;
       event.endYear = $scope.endYear;
       event.medium = $scope.medium;
-      student.$save({id: $scope.timeline.id}, function(data) {
+      event.$save({id: $scope.timeline.id}, function(data) {
         console.log('event added')
+        console.log(data)
         $scope.timeline = data;
         $modalInstance.close();
       })
