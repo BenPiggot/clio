@@ -19,4 +19,5 @@ ClioApp.controller('AuthLoginModalCtrl', ['$scope', 'UserService', '$modalInstan
     })
   }
 
+
 }])

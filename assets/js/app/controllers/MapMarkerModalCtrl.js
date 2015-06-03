@@ -20,7 +20,6 @@ ClioApp.controller('MapMarkerModalCtrl', ['$scope', 'UserService', '$modalInstan
       marker.country = $scope.country;
       marker.description = $scope.description;
       marker.image = $scope.image;
-      console.log(marker.address)
       marker.$save({ id: $scope.map.id}, function(data) {
         console.log('marker created')
         console.log(data)

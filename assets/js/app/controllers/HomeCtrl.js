@@ -1,4 +1,5 @@
-ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', function($scope, $rootScope, $modal, UserService) {
+ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', 'AlertService',
+     function($scope, $rootScope, $modal, UserService, AlertService) {
 
  console.log('home controller loaded')
 
@@ -10,6 +11,17 @@ ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', fu
     $modal.open({
       templateUrl: '/views/auth/loginModal.html',
       controller: 'AuthLoginModalCtrl'
+    })
+  }
+
+  $scope.showSignup = function() {
+    console.log('sign up modal firing')
+    $modal.open({
+      templateUrl: '/views/user/SignupModal.html',
+      controller: 'SignupModalCtrl'
+    }).result.then(function(data) {
+      console.log(data)
+      AlertService.add('success', 'Welcome to Clio! Please login.')
     })
   }
 
