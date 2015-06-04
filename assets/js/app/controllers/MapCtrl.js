@@ -1,9 +1,13 @@
-ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', function($scope, $modal, $routeParams, Project) {
+ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location',
+ function($scope, $modal, $routeParams, Project, UserService, $location) {
+
+
+// if(!UserService.currentUser){
+//   $location.path('/');
+// }
 
 // L.mapbox.accessToken = 'pk.eyJ1IjoiYmVucGlnZ290IiwiYSI6ImYwU2swWkUifQ.MJDSGs4FaCV1GlurP-nIDA';
 // // Create a map in the div #map
-
-
 
 
 //   var map = L.mapbox.map('map', 'mapbox.pirates',  {

@@ -29,15 +29,29 @@
 //
 // etc.
 
-*, body{
+body{
   margin: 0;
   border: 0;
+  min-height:100%;
 }
 
 li {
   list-style-type: none;
 }
 
+.gradient {
+min-height: 100vh;
+min-width: 100vh;
+margin-bottom: -1000px;
+background: rgba(227,227,227,1);
+background: -moz-radial-gradient(center, ellipse cover, rgba(227,227,227,1) 0%, rgba(219,219,219,1) 0%, rgba(255,255,255,1) 0%, rgba(209,209,209,1) 100%);
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(227,227,227,1)), color-stop(0%, rgba(219,219,219,1)), color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(209,209,209,1)));
+background: -webkit-radial-gradient(center, ellipse cover, rgba(227,227,227,1) 0%, rgba(219,219,219,1) 0%, rgba(255,255,255,1) 0%, rgba(209,209,209,1) 100%);
+background: -o-radial-gradient(center, ellipse cover, rgba(227,227,227,1) 0%, rgba(219,219,219,1) 0%, rgba(255,255,255,1) 0%, rgba(209,209,209,1) 100%);
+background: -ms-radial-gradient(center, ellipse cover, rgba(227,227,227,1) 0%, rgba(219,219,219,1) 0%, rgba(255,255,255,1) 0%, rgba(209,209,209,1) 100%);
+background: radial-gradient(ellipse at center, rgba(227,227,227,1) 0%, rgba(219,219,219,1) 0%, rgba(255,255,255,1) 0%, rgba(209,209,209,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3e3e3', endColorstr='#d1d1d1', GradientType=1 );
+}
 .white-text {
   color: white;
 }
@@ -51,13 +65,10 @@ a:hover {
   margin-top: -2em;
   background-color: #000;
   padding-bottom: 1em;
-}
-
-#cover-photo::after {
  content: "";
  background-image: url("https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/EKN/67/0130/VN.JPG");
- background-repeat: no-repeat;
  background-size: cover;
+  background-attachment: fixed;
  opacity: 0.8;
  top: 0;
  left: 0;
@@ -75,17 +86,14 @@ a:hover {
     background-color: rgba(0,0,0,0.62);
 }
 
-#project-photo {
-  margin-top: -2em;
-  background-color: #000;
-  padding-bottom: 1em;
-}
 
-#project-photo::after {
+#project-photo {
+ margin-top: -2em;
+ background-color: #000;
  content: "";
  background-image: url("http://citelighter-cards.s3.amazonaws.com/p179jerr2r1c2b19so8hjc2q1ev80_18242.jpg");
- background-repeat: no-repeat;
  background-size: cover;
+  background-attachment: fixed;
  opacity: 0.8;
  top: 0;
  left: 0;
@@ -157,15 +165,25 @@ body > div > ng-view > div.shadow-cover.ng-scope > div.alert.ng-isolate-scope {
   display: inline-block;
 }
 
-.top-margin {
-  margin-top: 2em;
-}
-
 #map {
   width: 1200px;
   height: 400px;
 }
 
+.hr-margins {
+  margin-top: 0em;
+  margin-bottom: 0.8em;
+  margin-right: 10%;
+}
+
+.top-margin {
+  margin-top: 2em;
+}
+
+.top-margin-medium {
+  margin-top: 1em;
+}
+
 .margin-bottom {
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }

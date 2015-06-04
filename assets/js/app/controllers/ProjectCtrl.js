@@ -1,5 +1,5 @@
-ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', 'UserService',
-  function($scope, $rootScope, $modal, AlertService, Project, UserService) {
+ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', 'UserService', '$location',
+  function($scope, $rootScope, $modal, AlertService, Project, UserService, $location) {
 
   $scope.UserService = UserService;
 
@@ -7,6 +7,11 @@ ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService',
     $scope.currentUser = UserService.currentUser;
 
   })
+
+
+  // if(!UserService.currentUser){
+  //   $location.path('/');
+  // }
 
   $scope.projects = [];
 

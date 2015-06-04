@@ -1,6 +1,10 @@
 ClioApp.controller('DiscussionCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', 'Discussion','$routeParams',
   function($scope, $rootScope, $modal, AlertService, Project, Discussion, $routeParams) {
 
+// if(!UserService.currentUser){
+//   $location.path('/');
+// }
+
   console.log($routeParams)
   Project.get({id: $routeParams.id}, function(data) {
     $scope.project = data

@@ -13,10 +13,8 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
       $scope.project = data
     });
 
-  // var buildTimeline = true;
-
-  // if ($scope.project.timeline) {
-  //   buildTimeline = false;
+  // if(!UserService.currentUser){
+  //   $location.path('/');
   // }
 
   $scope.newStudent = function() {

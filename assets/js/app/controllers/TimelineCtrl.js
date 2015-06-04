@@ -1,6 +1,10 @@
-ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project',
-    function($scope,$modal,$routeParams, Project) {
+ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location',
+    function($scope,$modal,$routeParams, Project, UserService, $location) {
     console.log('timeline controller online')
+
+  // if(!UserService.currentUser){
+  //   $location.path('/');
+  // }
 
   Project.get({id: $routeParams.id}, function(data) {
       $scope.project = data

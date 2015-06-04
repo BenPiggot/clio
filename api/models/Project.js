@@ -16,6 +16,9 @@ module.exports = {
     type: 'text',
     required: true
    },
+   medium: {
+    type: 'text'
+   },
    user: {
       model: 'User'
     },

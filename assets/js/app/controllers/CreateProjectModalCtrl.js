@@ -7,6 +7,7 @@ ClioApp.controller('CreateProjectModalCtrl', ['$scope', 'UserService', '$modalIn
      var project = new Project();
      project.name = $scope.name;
      project.description = $scope.description;
+     project.medium = $scope.medium;
      project.$save(function(data){
         $modalInstance.close();
       });

@@ -6,6 +6,9 @@ ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', 'A
  $scope.UserService = UserService;
 
 
+  // if(!UserService.currentUser){
+  //   $location.path('/');
+  // }
 
   $scope.showLogin = function() {
     $modal.open({
