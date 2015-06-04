@@ -11,7 +11,6 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
      $scope.markers = []
 
   AddMarker.query({id: $routeParams.id}, function(markerData) {
-    console.log(markerData[4].latitude)
     for (var i = 0; i < markerData.length; i++) {
       console.log(markerData[i])
       $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
@@ -23,7 +22,6 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
   Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
       console.log(data)
        $scope.map = data[0]
-       console.log($scope.map)
        $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers)
     })
 
@@ -56,7 +54,6 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
         console.log("added")
         console.log(data)
     AddMarker.query({id: $routeParams.id}, function(markerData) {
-    console.log(markerData[4].latitude)
     for (var i = 0; i < markerData.length; i++) {
       console.log(markerData[i])
       $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,

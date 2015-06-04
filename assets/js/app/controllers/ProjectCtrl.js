@@ -9,6 +9,7 @@ ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService',
   })
 
 
+
   // if(!UserService.currentUser){
   //   $location.path('/');
   // }
@@ -26,11 +27,12 @@ ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService',
 
   $scope.loadProjects = function() {
     console.log('load posts working')
-    Project.query(function(data) {
+    Project.query({userId: UserService.currentUser.id},function(data) {
       AlertService.clear()
       $scope.projects = data;
     })
   }
+
 
   $scope.loadProjects();
 
