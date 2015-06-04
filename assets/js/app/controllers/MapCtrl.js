@@ -43,7 +43,6 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
         console.log(data.maps[0].id)
         $scope.project = data
 
-        // $scope.mapRenderInit($scope.project.maps[0].latitude, $scope.project.maps[0].longitude, $scope.project.maps[0].zoom)
       });
     });
   }

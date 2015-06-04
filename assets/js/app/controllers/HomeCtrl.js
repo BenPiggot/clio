@@ -1,4 +1,4 @@
-ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', 'AlertService',
+ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', 'StudentUserService', 'AlertService',
      function($scope, $rootScope, $modal, UserService, AlertService) {
 
  console.log('home controller loaded')
@@ -6,9 +6,13 @@ ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', 'A
  $scope.UserService = UserService;
 
 
-  // if(!UserService.currentUser){
-  //   $location.path('/');
-  // }
+  $scope.showStudentLogin = function() {
+    console.log('student modal working')
+    $modal.open({
+      templateUrl: '/views/auth/studentLoginModal.html',
+      controller: 'StudentAuthLoginModalCtrl'
+    })
+  }
 
   $scope.showLogin = function() {
     $modal.open({

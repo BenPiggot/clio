@@ -1,0 +1,37 @@
+ <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h3 class="modal-title">Edit Map</h3>
+</div>
+<div class="modal-body">
+  <form class="form" ng-submit="updateMap()">
+    <div class="form-group">
+      <label>Map Name</label>
+      <input class="form-control" ng-model="name"></input>
+    </div>
+    <div class="form-group">
+      <label>Map Description</label>
+      <textarea class="form-control" ng-model="description"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Country</label>
+      <input class="form-control" ng-model="country"></input>
+    </div>
+    <div class="form-group">
+      <label>City (Optional)</label>
+      <input class="form-control" ng-model="city"></input>
+    </div>
+    <div class="form-group">
+      <label>Zoom</label>
+      <input class="form-control" ng-model="zoom"></input>
+    </div>
+    <div class="form-group">
+      <label>Theme (Optional) </label>
+      <input class="form-control" ng-model="theme"></input>
+    </div>
+     <div class="modal-footer">
+    <button class="btn btn-primary">Edit</button>
+    </div>
+  </form>
+</div>
+</div>

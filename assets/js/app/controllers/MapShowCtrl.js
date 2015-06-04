@@ -25,8 +25,9 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
        $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers)
     })
 
-
-
+  Project.get({id: $routeParams.projectId}, function(data) {
+    $scope.project = data
+  });
 
 
   $scope.mapRenderInit = function(lat, lng, zoom, markers) {

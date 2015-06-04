@@ -1,9 +1,17 @@
-ClioApp.controller('DiscussionCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', 'Discussion','$routeParams',
-  function($scope, $rootScope, $modal, AlertService, Project, Discussion, $routeParams) {
+ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project', 'Discussion','$routeParams', 'UserService',
+  function($scope, $modal, AlertService, Project, Discussion, $routeParams, UserService) {
 
 // if(!UserService.currentUser){
 //   $location.path('/');
 // }
+
+  $scope.UserService = UserService;
+
+  $scope.$watchCollection('UserService', function() {
+    $scope.currentUser = UserService.currentUser;
+
+  })
+
 
   console.log($routeParams)
   Project.get({id: $routeParams.id}, function(data) {

@@ -1,7 +1,39 @@
 <div ng-controller="TimelineShowCtrl">
 
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Clio</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/projects">Projects <span class="sr-only">(current)</span></a></li>
+        <li><a href="/projects/{{project.id}}">{{project.name}}<span class="sr-only">(current)</span></a></li>
+        <li><a href="#" ng-click="logout()" ng-show="currentUser">Logout <span class="sr-only">(current)</span></a></li>
+        <li><a href="#" ng-click="showLogin()" ng-hide="currentUser">Login<span class="sr-only">(current)</span></a></li>
+      </ul>
+
+<!--       <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-science">Submit</button>
+      </form> -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
   <div class="container">
-  <button class="btn btn-primary pull-right top-margin" ng-click="newEvent()">Add an Event</button>
+    <button class="btn btn-warning pull-right top-margin-medium" style="margin-left: 0.2em" ng-click="editTimeline()">Edit Timeline</button>
+    <button class="btn btn-primary pull-right top-margin-medium" ng-click="newEvent()">Add an Event</button>
   </div>
 
   <pipp-timeline-j-s source="timelineData"

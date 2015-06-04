@@ -1,5 +1,5 @@
-ClioApp.controller('TimelineEventModalCtrl', ['$scope', 'UserService', '$modalInstance',  'Project', '$routeParams', 'Timeline', 'AddEvent',
-  function($scope, UserService, $modalInstance, Project, $routeParams, Timeline, AddEvent) {
+ClioApp.controller('TimelineEventModalCtrl', ['$scope', 'UserService', '$modalInstance',  'Project', '$routeParams', 'Timeline', 'EditTimeline', 'AddEvent',
+  function($scope, UserService, $modalInstance, Project, $routeParams, Timeline, EditTimeline, AddEvent) {
 
 console.log($routeParams)
 
@@ -22,6 +22,20 @@ console.log($routeParams)
         $scope.timeline = data;
         $modalInstance.close();
       })
+    }
+
+    $scope.updateTimeline = function() {
+      console.log('trying')
+      EditTimeline.update({id: $routeParams.id},
+        {title: $scope.title,
+         description: $scope.description,
+         startYear: $scope.startYear,
+         endYear: $scope.endYear,
+         medium: $scope.medium},
+        function(data){
+        console.log('updated',data);
+        $modalInstance.close();
+      });
     }
 
   $scope.cancel = function () {

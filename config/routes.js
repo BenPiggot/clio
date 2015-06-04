@@ -34,6 +34,9 @@ module.exports.routes = {
 
   '/': 'PagesController.index',
 
+  'get /api/studentAuth': 'StudentAuthController.studentCheck',
+  'post /api/studentAuth': 'StudentAuthController.studentLogin',
+  'delete /api/studentAuth': 'StudentAuthController.studentLogout',
 
   'get /api/auth': 'AuthController.check',
   'post /api/auth': 'AuthController.login',

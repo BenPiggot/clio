@@ -19,16 +19,16 @@
         <li><a href="#" ng-click="logout()" ng-show="currentUser">Logout <span class="sr-only">(current)</span></a></li>
         <li><a href="#" ng-click="showLogin()" ng-hide="currentUser">Login<span class="sr-only">(current)</span></a></li>
       </ul>
-      <form class="navbar-form navbar-right" role="search">
+<!--       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-science">Submit</button>
-      </form>
+      </form> -->
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div class="container">
+<div ng-show="currentUser" class="container">
 
 <h1> {{project.name}}</h1>
 <p> {{project.description}} </p>
@@ -65,4 +65,6 @@
 <button ng-click="newStudent()" class="btn btn-primary margin-bottom">Add a Student</button>
 
 </div>
+
+
 </div>

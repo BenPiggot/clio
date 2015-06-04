@@ -1,9 +1,15 @@
-ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', '$routeParams', 'UserService', 'AddStudent', '$location',
-  function($scope, $rootScope, $modal, AlertService, Project, $routeParams, UserService, AddStudent, $location) {
+ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', '$routeParams', 'UserService', 'StudentUserService', 'AddStudent', '$location',
+  function($scope, $rootScope, $modal, AlertService, Project, $routeParams, UserService, StudentUserService, AddStudent, $location) {
 
     console.log('project show control online')
 
     $scope.UserService = UserService;
+
+    $scope.StudentUserService = StudentUserService
+
+    $scope.$watchCollection('StudentUserService', function() {
+      $scope.currentStudentUser = StudentUserService.currentStudentUser;
+    })
 
     $scope.$watchCollection('UserService', function() {
       $scope.currentUser = UserService.currentUser;
@@ -13,9 +19,9 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
       $scope.project = data
     });
 
-  // if(!UserService.currentUser){
-  //   $location.path('/');
-  // }
+  if(!UserService.currentUser){
+    $location.path('/');
+  }
 
   $scope.newStudent = function() {
     if (UserService.currentUser) {
@@ -61,6 +67,7 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
 
 
   $scope.newProject = function() {
+   if (UserService.currentUser) {
     $modal.open({
       templateUrl: '/views/projects/editProjectModal.html',
       controller: 'EditProjectModalCtrl'
@@ -70,10 +77,14 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
       $scope.project = data
     });
   })
+  } else {
+    AlertService.add('danger', 'You cannot edit this project.')
+  }
   }
 
 
   $scope.newTimeline = function() {
+    if (UserService.currentUser) {
       $modal.open({
         templateUrl: '/views/projects/addTimelineModal.html',
         controller: 'AddTimelineModalCtrl'
@@ -83,7 +94,9 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
         $scope.project = data
       });
       });
-
+    } else {
+      AlertService.add('danger', 'You cannot add a timeline for this project.')
+    }
   }
 
  $scope.logout = function() {
@@ -91,6 +104,7 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
       $location.path('/')
     })
   }
+
 
  $scope.showLogin = function() {
     $modal.open({

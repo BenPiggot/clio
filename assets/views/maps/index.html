@@ -1,16 +1,20 @@
 
-  <div class="margin-bottom">
 
   <leaflet center="center" markers="markers" width="1200px" height="400px"></leaflet>
   <!-- <div id="map"></div> -->
+  <div class="gradient">
   <div class="container">
-  <h1>Build a Map</h1>
+  <h1>Project Maps for "{{project.name}}"</h1>
 
   <div>
      <li ng-repeat="map in project.maps">
       <a class="black-text" ng-href="/projects/{{project.id}}/maps/{{map.id}}">{{map.name}}</a>
      </li>
   </div>
-   <button ng-click="newMap()" class="btn btn-primary map-btn top-margin-medium">Create Project Map</button>
+
+   <button ng-click="newMap()" class="btn btn-primary map-btn top-margin-medium margin-bottom">Create Project Map</button>
+   <button ng-href="" class="btn btn-primary map-btn top-margin-medium margin-bottom">Return to Project</button>
   </div>
   </div>
+
+

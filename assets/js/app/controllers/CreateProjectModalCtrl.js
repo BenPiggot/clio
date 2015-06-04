@@ -1,7 +1,7 @@
 ClioApp.controller('CreateProjectModalCtrl', ['$scope', 'UserService', '$modalInstance', 'Project', '$location',
   function($scope, UserService, $modalInstance, Project, $location) {
 
-    console.log(UserService.currentUser)
+  console.log(UserService.currentUser)
   $scope.createProject = function() {
 
      var project = new Project();

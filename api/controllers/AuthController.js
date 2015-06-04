@@ -8,13 +8,6 @@ var bcrypt = require('bcrypt');
 
 module.exports = {
 
-  // signup: function(req, res) {
-  //   User.findOrCreate({firstName: req.body.firstName, lastName: req.body.lastName,
-  //     email: req.body.email, password: req.body.password})
-  //   .exec(function(data) {
-  //     console.log(data)
-  //   })
-  // },
   //POST /api/auth
   login: function(req, res) {
     User.findOne({email: req.body.email}).then(function(user) {
