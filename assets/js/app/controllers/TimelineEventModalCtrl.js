@@ -4,7 +4,7 @@ ClioApp.controller('TimelineEventModalCtrl', ['$scope', 'UserService', '$modalIn
 console.log($routeParams)
 
   Timeline.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
-    console.log(data[0])
+
     $scope.timeline = data[0]
   })
 
