@@ -21,6 +21,10 @@ ClioApp.controller('AddTimelineModalCtrl', ['$scope', 'UserService', '$modalInst
       })
     }
 
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+
 }]);
 
 

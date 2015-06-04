@@ -1,5 +1,5 @@
-ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', '$routeParams', 'UserService', 'AddStudent',
-  function($scope, $rootScope, $modal, AlertService, Project, $routeParams, UserService, AddStudent) {
+ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', '$routeParams', 'UserService', 'AddStudent', '$location',
+  function($scope, $rootScope, $modal, AlertService, Project, $routeParams, UserService, AddStudent, $location) {
 
     console.log('project show control online')
 
@@ -35,6 +35,31 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
   }
 
 
+  $scope.deleteStudent = function(studentId) {
+    if (UserService.currentUser){
+      if (confirm("Are you sure you want to remove this student?")) {
+        Student.delete({id: studentId}, function(data) {
+          console.log(data)
+          AlertService.add('info', 'Student removed')
+          Project.get({id: $routeParams.id}, function(data) {
+          $scope.project = data
+          });
+        })
+      }
+    } else {
+      AlertService.add('danger', 'You cannot edit the student list.')
+    }
+  }
+
+  $scope.editStudent = function() {
+    $modal.open({
+      templateUrl: '/views/projects/editStudentModal.html',
+      controller: 'EditStudentModalCtrl'
+    })
+    console.log('create modal firing')
+  }
+
+
   $scope.newProject = function() {
     $modal.open({
       templateUrl: '/views/projects/editProjectModal.html',
@@ -47,8 +72,8 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
   })
   }
 
-    $scope.newTimeline = function() {
 
+  $scope.newTimeline = function() {
       $modal.open({
         templateUrl: '/views/projects/addTimelineModal.html',
         controller: 'AddTimelineModalCtrl'
@@ -59,6 +84,19 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
       });
       });
 
+  }
+
+ $scope.logout = function() {
+    UserService.logout(function(err, data){
+      $location.path('/')
+    })
+  }
+
+ $scope.showLogin = function() {
+    $modal.open({
+      templateUrl: '/views/auth/loginModal.html',
+      controller: 'AuthLoginModalCtrl'
+    })
   }
 
 

@@ -59,8 +59,11 @@ var TimelineCreate = function() {
       }).result.then(function(){
           AddEvent.query({id: $routeParams.id}, function(eventData) {
             for (var i = 0; i < eventData.length; i++) {
-              $scope.date.push({"startDate": eventData[i].startYear, "endDate": eventData[i].endYear, "headline": eventData[i].title,
-                              "text": eventData[i].text, "asset": {"media": eventData[i].medium, "thumbnail": eventData[i].medium}})
+              $scope.date.push({"startDate": moment.utc(eventData[i].startYear).format('YYYY,MM,DD').toString(),
+                        "endDate": moment.utc(eventData[i].endYear).format('YYYY,MM,DD').toString(),
+                        "headline": eventData[i].title,
+                        "text": eventData[i].text,
+                        "asset": {"media": eventData[i].medium, "thumbnail": eventData[i].medium}})
             }
             console.log("This is my test", $scope.date)
           })

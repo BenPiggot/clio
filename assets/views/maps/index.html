@@ -5,10 +5,12 @@
   <!-- <div id="map"></div> -->
   <div class="container">
   <h1>Build a Map</h1>
-     <button ng-click="newMap()" class="btn btn-info map-btn">Create Project Map</button>
-     <!-- <button ng-click="addMarker()" class="btn btn-info map-btn">Add a marker</button> -->
+
+  <div>
      <li ng-repeat="map in project.maps">
-      <a ng-href="/projects/{{project.id}}/maps/{{map.id}}">{{map.name}}</a>
+      <a class="black-text" ng-href="/projects/{{project.id}}/maps/{{map.id}}">{{map.name}}</a>
      </li>
+  </div>
+   <button ng-click="newMap()" class="btn btn-primary map-btn top-margin-medium">Create Project Map</button>
   </div>
   </div>

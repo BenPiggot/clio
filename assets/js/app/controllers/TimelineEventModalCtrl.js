@@ -24,4 +24,8 @@ console.log($routeParams)
       })
     }
 
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
 }]);

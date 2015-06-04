@@ -28,4 +28,8 @@ ClioApp.controller('MapMarkerModalCtrl', ['$scope', 'UserService', '$modalInstan
       })
     }
 
+   $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
   }])

@@ -14,6 +14,9 @@ ClioApp.controller('CreateProjectModalCtrl', ['$scope', 'UserService', '$modalIn
 
   }
 
+ $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
 
 }])
 

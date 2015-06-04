@@ -22,4 +22,8 @@ ClioApp.controller('AddMapModalCtrl', ['$scope', 'UserService', '$modalInstance'
       })
     }
 
+   $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+
 }]);

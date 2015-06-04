@@ -14,5 +14,9 @@ ClioApp.controller('SignupModalCtrl', ['$scope', 'UserService', '$modalInstance'
       $modalInstance.close();
     }
 
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
 }])
 

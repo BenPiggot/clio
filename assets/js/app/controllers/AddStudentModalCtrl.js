@@ -18,5 +18,9 @@ ClioApp.controller('AddStudentModalCtrl', ['$scope', 'UserService', '$modalInsta
       })
     }
 
+   $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+
 }]);
 
