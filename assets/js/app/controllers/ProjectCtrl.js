@@ -1,5 +1,5 @@
-ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', 'UserService', '$location',
-  function($scope, $rootScope, $modal, AlertService, Project, UserService, $location) {
+ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', 'UserService', '$location', 'StudentUserService',
+  function($scope, $rootScope, $modal, AlertService, Project, UserService, $location, StudentUserService) {
 
   $scope.UserService = UserService;
 
@@ -7,6 +7,14 @@ ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService',
     $scope.currentUser = UserService.currentUser;
 
   })
+
+  $scope.StudentUserService = StudentUserService
+
+  $scope.$watchCollection('StudentUserService', function() {
+    $scope.currentStudentUser = StudentUserService.currentStudentUser;
+  })
+
+console.log($scope.currentStudentUser)
 
 var imageArray = [
 
@@ -24,9 +32,9 @@ var number = Math.floor(Math.random() * 7)
 
 $scope.image = imageArray[number]
 
-  if(!UserService.currentUser){
-    $location.path('/');
-  }
+  // if(!UserService.currentUser){
+  //   $location.path('/');
+  // }
 
   $scope.projects = [];
 

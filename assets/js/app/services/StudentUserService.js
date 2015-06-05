@@ -10,8 +10,11 @@ ClioApp.factory('StudentUserService', ['$http', 'AlertService', function($http, 
 
       $http.post('/api/studentAuth', {email: email})
       .success(function(data) {
-        if(data && data.student) {
-          self.currentStudentUser = data.student;
+        console.log(data.user)
+        if(data && data.user) {
+          console.log('predefinition', data.user)
+          self.currentStudentUser = data.user;
+          console.log('posttttttttttifinition', self.currentStudentUser)
           AlertService.add('success', 'User has logged in')
         } else {
           self.currentStudentUser = false;
@@ -29,8 +32,8 @@ ClioApp.factory('StudentUserService', ['$http', 'AlertService', function($http, 
 
       $http.get('/api/studentAuth')
       .success(function(data) {
-        if(data && data.student) {
-          self.currentStudentUser = data.student;
+        if(data && data.user) {
+          self.currentStudentUser = data.user;
         } else {
           self.currentStudentUser = false;
         }

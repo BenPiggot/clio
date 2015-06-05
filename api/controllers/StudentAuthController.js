@@ -5,6 +5,7 @@ module.exports = {
     Student.findOne({email: req.body.email}).then(function(student) {
       if(student) {
             req.session.studentUser = student;
+            console.log(req.session.studentUser)
             res.send({
               result: true,
               user: student
@@ -12,7 +13,7 @@ module.exports = {
       } else {
         res.send({
           result: false,
-          error: 'Unkown User.'
+          error: 'Unknown User.'
         })
       }
 
