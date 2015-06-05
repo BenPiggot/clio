@@ -9,7 +9,7 @@
   <div>
      <li ng-repeat="map in project.maps" class="list-delete">
       <a class="black-text" ng-href="/projects/{{project.id}}/maps/{{map.id}}">{{map.name}}</a>
-      <button ng-click="deleteMap(map.id)" class="btn btn-xs glyphicon glyphicon-trash pull-right" style="line-height: 14px"
+      <button ng-click="deleteMap(map.id)" style="color: black" class="btn btn-default btn-xs glyphicon glyphicon-trash pull-right" style="line-height: 14px"
                     tooltip="Remove map?" tooltip-placement="top"></button>
      </li>
   </div>
