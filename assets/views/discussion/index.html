@@ -38,8 +38,10 @@
 <hr>
 <div style="overflow: scroll">
 <li ng-repeat="post in posts" class="list-group-item">
-          <em> {{post.createdAt | date: 'short'}}</em></br>
-           {{post.post}}
+
+           <div>{{post.post}}</div></br>
+           <div class="pull-right"><em> {{post.createdAt | date: 'short'}}</em></div>
+           <div>{{firstName}} {{lastName}}</div>
 
 </li>
 <hr>

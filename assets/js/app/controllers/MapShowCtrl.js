@@ -1,11 +1,15 @@
 ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Map','AddMarker', 'UserService',
   function($scope, $modal, $routeParams, Project, Map, AddMarker, UserService) {
 
-  // if(!UserService.currentUser){
-  //   $location.path('/');
-  // }
+  Project.get({id: $routeParams.projectId}, function(data) {
+    $scope.project = data
+  });
 
-// L.mapbox.accessToken = 'pk.eyJ1IjoiYmVucGlnZ290IiwiYSI6ImYwU2swWkUifQ.MJDSGs4FaCV1GlurP-nIDA';
+
+  if(!UserService.currentUser){
+    $location.path('/');
+  }
+
 
      $scope.mapShow = false;
      $scope.markers = []
@@ -25,9 +29,6 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
        $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers)
     })
 
-  Project.get({id: $routeParams.projectId}, function(data) {
-    $scope.project = data
-  });
 
 
   $scope.mapRenderInit = function(lat, lng, zoom, markers) {
@@ -37,8 +38,12 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
             lat: lat || 35,
             lng: lng || 30,
             zoom: zoom || 2
+          },
+          defaults: {
+            scrollWheelZoom: false
           }
       })
+
       $scope.markers
 
       console.log($scope.markers)
@@ -54,22 +59,38 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
     }).result.then(function(data){
         console.log("added")
         console.log(data)
-    AddMarker.query({id: $routeParams.id}, function(markerData) {
-    for (var i = 0; i < markerData.length; i++) {
-      console.log(markerData[i])
-      $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
-                             message: markerData[i].description, draggable: false})
-    }
-    console.log('last', $scope.markers)
-  })
+      AddMarker.query({id: $routeParams.id}, function(markerData) {
+        for (var i = 0; i < markerData.length; i++) {
+            console.log(markerData[i])
+            $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
+                                   message: markerData[i].description, draggable: false})
+        }
+      })
       Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
-      console.log(data)
        $scope.map = data[0]
-       console.log($scope.map)
        $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers)
-    })
-
+      })
     });
   };
+
+$scope.editMap = function() {
+ $modal.open({
+      templateUrl:'/views/maps/editMapModal.html',
+      controller: 'EditMapModalCtrl'
+    }).result.then(function(data){
+      console.log(data)
+      AddMarker.query({id: $routeParams.id}, function(markerData) {
+        for (var i = 0; i < markerData.length; i++) {
+            console.log(markerData[i])
+            $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
+                                   message: markerData[i].description, draggable: false})
+        }
+      })
+      Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
+       $scope.map = data[0]
+       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers)
+      })
+    });
+  }
 
 }])

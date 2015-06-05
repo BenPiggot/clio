@@ -1,5 +1,5 @@
-ClioApp.controller('TimelineShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Timeline', 'AddEvent', 'UserService', '$location',
-    function($scope,$modal,$routeParams, Project, Timeline, AddEvent, UserService, $location) {
+ClioApp.controller('TimelineShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Timeline', 'AddEvent', 'UserService', '$location','$route',
+    function($scope,$modal,$routeParams, Project, Timeline, AddEvent, UserService, $location, $route) {
     console.log('timeline show controller online')
 
   $scope.UserService = UserService;
@@ -90,6 +90,11 @@ var TimelineCreate = function() {
             console.log("This is my test", data)
           })
     }
+
+
+  $scope.reloadRoute = function() {
+     $route.reload();
+  }
 
 
 

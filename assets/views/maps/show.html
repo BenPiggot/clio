@@ -1,8 +1,8 @@
 
 
-<leaflet ng-if="mapShow" center="center" markers="markers" width="1200px" height="350px"></leaflet>
+<leaflet ng-if="mapShow" center="center" defaults="defaults" markers="markers" width="1200px" height="350px"></leaflet>
 <!-- <div style="border-bottom: 1px solid black" id="map"></div> -->
-<div class="gradient">
+<div class="gradient-map">
 <div class="container">
 
   <h1>{{map.name}}</h1>
@@ -10,6 +10,7 @@
   <hr>
   <button class="btn btn-primary bottom-margin" ng-click="newMarker()">Add an Event to the Map</button>
   <a ng-href="/projects/{{project.id}}/maps" class="btn btn-primary bottom-margin">Return to Maps Index</a>
+  <button class="btn btn-primary bottom-margin" ng-click="editMap()">Edit Map</button>
 </div>
 </div>
 

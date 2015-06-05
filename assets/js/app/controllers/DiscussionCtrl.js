@@ -12,6 +12,8 @@ ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project'
 
   })
 
+  $scope.firstName = $scope.UserService.currentUser.firstName
+  $scope.lastName = $scope.UserService.currentUser.lastName
 
   console.log($routeParams)
   Project.get({id: $routeParams.id}, function(data) {

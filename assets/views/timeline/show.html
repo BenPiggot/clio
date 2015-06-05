@@ -32,10 +32,11 @@
   </div><!-- /.container-fluid -->
 </nav>
   <div class="container">
-    <button class="btn btn-warning pull-right top-margin-medium" style="margin-left: 0.2em" ng-click="editTimeline()">Edit Timeline</button>
-    <button class="btn btn-primary pull-right top-margin-medium" ng-click="newEvent()">Add an Event</button>
+    <button class="btn btn-primary pull-right top-margin-small" style="margin-left: 0.2em" ng-click="reloadRoute()">Refresh Timeline</button>
+    <button class="btn btn-primary pull-right top-margin-small" style="margin-left: 0.2em" ng-click="editTimeline()">Edit Timeline</button>
+    <button class="btn btn-primary pull-right top-margin-small" ng-click="newEvent()">Add an Event</button>
   </div>
-
+<hr style="color: black; width: 90%">
   <pipp-timeline-j-s source="timelineData"
                      height="570"
                      width="98%"

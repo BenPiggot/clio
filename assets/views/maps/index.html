@@ -1,8 +1,8 @@
 
 
-  <leaflet center="center" markers="markers" width="1200px" height="400px"></leaflet>
+  <leaflet center="center" markers="markers" defaults="defaults" width="1200px" height="400px"></leaflet>
   <!-- <div id="map"></div> -->
-  <div class="gradient">
+ <div class="gradient-map">
   <div class="container">
   <h1>Project Maps for "{{project.name}}"</h1>
 
@@ -13,7 +13,7 @@
   </div>
 
    <button ng-click="newMap()" class="btn btn-primary map-btn top-margin-medium margin-bottom">Create Project Map</button>
-   <button ng-href="" class="btn btn-primary map-btn top-margin-medium margin-bottom">Return to Project</button>
+   <a ng-href="/projects/{{project.id}}" class="btn btn-primary map-btn top-margin-medium margin-bottom">Return to Project</a>
   </div>
   </div>
 

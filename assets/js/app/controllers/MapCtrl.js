@@ -26,8 +26,11 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
             lat: lat || 35,
             lng: lng || 30,
             zoom: zoom || 2
+          },
+          defaults: {
+            scrollWheelZoom: false
           }
-      })
+        })
     }
 
     $scope.mapRenderInit()
