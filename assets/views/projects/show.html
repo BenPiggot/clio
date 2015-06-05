@@ -33,10 +33,11 @@
 
 <h1> {{project.name}}</h1>
 <p> {{project.description}} </p>
-   <a class="btn btn-primary top-margin-small" href="/projects/{{project.id}}/maps">Add/View Maps</a>
-   <a  class="btn btn-primary top-margin-small" href="/projects/{{project.id}}/timeline">Add/View Timelines</a>
-  <a class="btn btn-primary top-margin-small" href="/projects/{{project.id}}/discussion">Join Discussion</a>
-   <button ng-click="newProject()" class="btn btn-primary top-margin-small">Edit Project Details</button>
+<hr>
+   <a class="btn btn-primary " href="/projects/{{project.id}}/maps">Add/View Maps</a>
+   <a  class="btn btn-primary " href="/projects/{{project.id}}/timeline">Add/View Timelines</a>
+  <a class="btn btn-primary " href="/projects/{{project.id}}/discussion">Join Discussion</a>
+   <button ng-click="newProject()" class="btn btn-primary ">Edit Project Details</button>
 <hr>
 <h2>Students</h2>
 <alerts></alerts>
