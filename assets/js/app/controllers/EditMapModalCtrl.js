@@ -15,8 +15,6 @@ ClioApp.controller('EditMapModalCtrl', ['$scope', 'UserService', '$modalInstance
         $scope.zoom = 4
        } else if ($scope.zoom === "World") {
         $scope.zoom = 2
-       } else {
-        alert("Please choose either Neighborhood, City, Region, Country, Continent, World")
        }
       EditMap.update({id: $routeParams.id},
         {name: $scope.name,
