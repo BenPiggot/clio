@@ -1,5 +1,5 @@
-ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location',
- function($scope, $modal, $routeParams, Project, UserService, $location) {
+ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location', 'EditMap', 'AlertService',
+ function($scope, $modal, $routeParams, Project, UserService, $location, EditMap, AlertService) {
 
 
 // if(!UserService.currentUser){
@@ -10,10 +10,57 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
 // // Create a map in the div #map
 
 
-//   var map = L.mapbox.map('map', 'mapbox.pirates',  {
-//     center: [30,35],
-//     zoom: 2
-//   })
+  var tilesDict = {
+      openstreetmap: {
+          url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+          options: {
+              attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }
+      },
+      mapbox_light: {
+          name: 'Mapbox Satellite',
+          url: 'http://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={apikey}',
+          type: 'xyz',
+          options: {
+              apikey: 'pk.eyJ1IjoiYmVucGlnZ290IiwiYSI6ImYwU2swWkUifQ.MJDSGs4FaCV1GlurP-nIDA',
+              mapid: 'mapbox.light'
+            }
+      },
+      mapbox_outdoors: {
+          name: 'Mapbox Outdoors',
+          url: 'http://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={apikey}',
+          type: 'xyz',
+          options: {
+              apikey: 'pk.eyJ1IjoiYmVucGlnZ290IiwiYSI6ImYwU2swWkUifQ.MJDSGs4FaCV1GlurP-nIDA',
+              mapid: 'mapbox.outdoors'
+          }
+      },
+      mapbox_wheat: {
+          name: 'Mapbox Wheat Paste',
+          url: 'http://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={apikey}',
+          type: 'xyz',
+          options: {
+              apikey: 'pk.eyJ1IjoiYmVucGlnZ290IiwiYSI6ImYwU2swWkUifQ.MJDSGs4FaCV1GlurP-nIDA',
+              mapid: 'mapbox.wheat'
+            }
+          },
+      mapbox_pirates: {
+        name: 'Mapbox Pirates',
+        url: 'http://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={apikey}',
+        type: 'xyz',
+        options: {
+              apikey: 'pk.eyJ1IjoiYmVucGlnZ290IiwiYSI6ImYwU2swWkUifQ.MJDSGs4FaCV1GlurP-nIDA',
+              mapid: 'mapbox.pirates'
+          }
+        }
+
+  }
+
+
+
+  // $scope.changeTiles = function(tiles) {
+  //     $scope.tiles = tilesDict[tiles];
+  // };
 
   Project.get({id: $routeParams.id}, function(data) {
     $scope.project = data
@@ -29,13 +76,29 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
           },
           defaults: {
             scrollWheelZoom: false
-          }
+          },
+          tiles: tilesDict.openstreetmap
         })
     }
 
     $scope.mapRenderInit()
-    // global, zoom: 2, continental, zoom: 3, national: zoom 6, regional: zoom 8, urban region: zoom 10, neighborhood: zoom 12
 
+
+  $scope.deleteMap = function(mapId) {
+    if (UserService.currentUser){
+      if (confirm("Are you sure you want to remove this map?")) {
+        EditMap.delete({id: mapId}, function(data) {
+          console.log(data)
+          AlertService.add('info', 'Map removed')
+          Project.get({id: $routeParams.id}, function(data) {
+          $scope.project = data
+          });
+        })
+      }
+    } else {
+      AlertService.add('danger', 'You cannot edit the student list.')
+    }
+  }
 
   $scope.newMap = function() {
       $modal.open({

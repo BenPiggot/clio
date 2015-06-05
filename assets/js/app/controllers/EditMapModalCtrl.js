@@ -10,7 +10,7 @@ ClioApp.controller('EditMapModalCtrl', ['$scope', 'UserService', '$modalInstance
        } else if ($scope.zoom === "Region") {
         $scope.zoom = 8
        } else if ($scope.zoom === "Country") {
-        $scope.zoom = 6
+        $scope.zoom = 5
        } else if ($scope.zoom === "Continent") {
         $scope.zoom = 4
        } else if ($scope.zoom === "World") {

@@ -1,5 +1,5 @@
-ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location',
-    function($scope,$modal,$routeParams, Project, UserService, $location) {
+ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location', 'EditTimeline',
+    function($scope,$modal,$routeParams, Project, UserService, $location, EditTimeline) {
     console.log('timeline controller online')
 
 
@@ -18,6 +18,7 @@ var imageArray = [
 var number = Math.floor(Math.random() * 7)
 
 $scope.image = imageArray[number]
+
 
   if(!UserService.currentUser){
     $location.path('/');
@@ -40,6 +41,21 @@ $scope.image = imageArray[number]
       });
   }
 
+
+  $scope.deleteTimeline = function(timelineId) {
+    if (UserService.currentUser){
+      if (confirm("Are you sure you want to remove this timeline?")) {
+        EditTimeline.delete({id: timelineId}, function(data) {
+          console.log(data)
+          Project.get({id: $routeParams.id}, function(data) {
+            $scope.project = data
+          });
+        })
+      }
+    } else {
+      AlertService.add('danger', 'You cannot edit the timeline list.')
+    }
+  }
 
 
 

@@ -10,7 +10,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Clio</a>
+      <a ng-show="!currentUser" class="navbar-brand" href="/">Clio</a>
+      <a ng-show="currentUser" class="navbar-brand" href="/projects">Welcome {{currentUser.firstName}}</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

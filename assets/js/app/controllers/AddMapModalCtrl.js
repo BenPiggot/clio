@@ -19,7 +19,7 @@ ClioApp.controller('AddMapModalCtrl', ['$scope', 'UserService', '$modalInstance'
        } else if ($scope.zoom === "World") {
         $scope.zoom = 2
        } else {
-        alert("Please choose either Neighborhood, City, Region, Country, Continent, World")
+        alert("Please choose either Neighborhood, City, Region, Country, Continent or World")
        }
       console.log('awesome')
       var map = new AddMap()

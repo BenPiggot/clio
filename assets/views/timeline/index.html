@@ -8,8 +8,10 @@
  <div class="container">
   <h1 class="top-margin-medium white-text">Timelines for "{{project.name}}"</h1>
   <hr class="white-text hr-margins">
-  <li ng-repeat="timeline in project.timelines">
+  <li class="list-delete-timeline" ng-repeat="timeline in project.timelines">
     <a class="white-text" ng-href="/projects/{{project.id}}/timeline/{{timeline.id}}">{{timeline.title}}</a>
+    <button ng-click="deleteTimeline(timeline.id)" class="btn btn-default btn-xs glyphicon glyphicon-trash pull-right"
+                    tooltip="Remove timeline?" tooltip-placement="top"></button>
    </li>
   <button class="btn btn-primary top-margin-medium" ng-click="newTimeline()">New Timeline</button>
   <a ng-href="/projects/{{project.id}}" class="btn btn-primary top-margin-medium">Return to Project</a>

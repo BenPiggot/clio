@@ -1,7 +1,6 @@
-ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', '$routeParams', 'UserService', 'StudentUserService', 'AddStudent', '$location',
-  function($scope, $rootScope, $modal, AlertService, Project, $routeParams, UserService, StudentUserService, AddStudent, $location) {
+ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', '$routeParams', 'UserService', 'StudentUserService', 'AddStudent', '$location', 'EditStudent',
+  function($scope, $rootScope, $modal, AlertService, Project, $routeParams, UserService, StudentUserService, AddStudent, $location, EditStudent) {
 
-    console.log('project show control online')
 
     $scope.UserService = UserService;
 
@@ -14,6 +13,7 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
     $scope.$watchCollection('UserService', function() {
       $scope.currentUser = UserService.currentUser;
     })
+
 
     Project.get({id: $routeParams.id}, function(data) {
       $scope.project = data
@@ -44,12 +44,9 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
   $scope.deleteStudent = function(studentId) {
     if (UserService.currentUser){
       if (confirm("Are you sure you want to remove this student?")) {
-        Student.delete({id: studentId}, function(data) {
+        EditStudent.delete({id: studentId}, function(data) {
           console.log(data)
           AlertService.add('info', 'Student removed')
-          Project.get({id: $routeParams.id}, function(data) {
-          $scope.project = data
-          });
         })
       }
     } else {
