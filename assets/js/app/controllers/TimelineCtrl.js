@@ -2,21 +2,23 @@ ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project',
     function($scope,$modal,$routeParams, Project, UserService, $location, EditTimeline, StudentUserService) {
     console.log('timeline controller online')
 
-$scope.UserService = UserService;
+  $scope.UserService = UserService;
 
-$scope.StudentUserService = StudentUserService
+  $scope.StudentUserService = StudentUserService
 
-$scope.$watchCollection('StudentUserService', function() {
-  $scope.currentStudentUser = StudentUserService.currentStudentUser;
-})
+  $scope.$watchCollection('StudentUserService', function() {
+    $scope.currentStudentUser = StudentUserService.currentStudentUser;
+  })
 
-$scope.$watchCollection('UserService', function() {
-  $scope.currentUser = UserService.currentUser;
-})
+  $scope.$watchCollection('UserService', function() {
+    $scope.currentUser = UserService.currentUser;
+  })
 
-if(!UserService.currentUser && !StudentUserService.currentStudentUser){
-  $location.path('/');
-}
+
+ if(!UserService.currentUser && !StudentUserService.currentStudentUser){
+    $location.path('/');
+  }
+
 
 var imageArray = [
 
@@ -34,10 +36,6 @@ var number = Math.floor(Math.random() * 7)
 
 $scope.image = imageArray[number]
 
-
-  if(!UserService.currentUser){
-    $location.path('/');
-  }
 
   Project.get({id: $routeParams.id}, function(data) {
       $scope.project = data
