@@ -19,7 +19,7 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
       $scope.project = data
     });
 
-  if(!UserService.currentUser){
+  if(!UserService.currentUser && !StudentUserService.currentStudentUser){
     $location.path('/');
   }
 

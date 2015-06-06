@@ -1,5 +1,5 @@
-ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project', 'Discussion','$routeParams', 'UserService',
-  function($scope, $modal, AlertService, Project, Discussion, $routeParams, UserService) {
+ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project', 'Discussion','$routeParams', 'UserService', 'StudentUserService',
+  function($scope, $modal, AlertService, Project, Discussion, $routeParams, UserService, StudentUserService) {
 
 // if(!UserService.currentUser){
 //   $location.path('/');
@@ -11,9 +11,18 @@ ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project'
     $scope.currentUser = UserService.currentUser;
 
   })
+  console.log("test", StudentUserService.currentUser)
+  console.log("test 2", UserService.currentUser)
 
-  $scope.firstName = $scope.UserService.currentUser.firstName
-  $scope.lastName = $scope.UserService.currentUser.lastName
+  if (UserService.currentUser) {
+    var commenter = UserService.currentUser.firstName + " " + UserService.currentUser.lastName
+  }
+
+  if (StudentUserService.currentStudentUser) {
+    var commenter = StudentUserService.currentStudentUser.firstName + " " + StudentUserService.currentStudentUser.lastName
+  }
+
+  console.log(commenter)
 
   console.log($routeParams)
   Project.get({id: $routeParams.id}, function(data) {
@@ -34,6 +43,7 @@ ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project'
     console.log('comment function firing')
      var discussion = new Discussion();
      discussion.post = $scope.post;
+     discussion.commenter = commenter;
      console.log(discussion.post)
      discussion.$save({id: $scope.project.id},function(data){
         console.log(data);

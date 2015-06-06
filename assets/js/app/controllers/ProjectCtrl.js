@@ -37,16 +37,22 @@ $scope.image = imageArray[number]
     $location.path('/');
   }
 
-  $scope.projects = [];
+$scope.projects = [];
+
 
   $scope.newProject = function() {
+  if (UserService.currentUser) {
     $modal.open({
       templateUrl: '/views/projects/createProjectModal.html',
       controller: 'CreateProjectModalCtrl'
     }).result.then(function(){
     $scope.loadProjects();
     })
-  }
+  } else {
+  AlertService.add('danger', 'You cannot add a new project.')
+}
+}
+
 
   $scope.loadProjects = function() {
     console.log('load posts working')
@@ -57,6 +63,21 @@ $scope.image = imageArray[number]
   }
 
 
+  $scope.loadStudentProjects = function() {
+    console.log('new function test', StudentUserService.currentStudentUser)
+    Project.query({id: UserService.currentUser.project},function(data) {
+      console.log(data)
+      AlertService.clear()
+      $scope.projects = data;
+    })
+  }
+
+if (UserService.currentUser) {
   $scope.loadProjects();
+}
+
+if (StudentUserService.currentStudentUser) {
+  $scope.loadStudentProjects();
+}
 
 }])

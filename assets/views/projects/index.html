@@ -8,10 +8,11 @@
 
       <h1 class="white-text">Recent Projects</h1>
       <hr class="white-text hr-margins">
+      <alerts></alerts>
         <li class="white-text" ng-repeat="project in projects">
         <a class="white-text" ng-href="/projects/{{project.id}}">{{project.name}}</a>
         </li>
       <button ng-click="newProject()" class="top-margin-medium btn btn-primary">Start a New Project</button>
-      <alerts></alerts>
+
   </div>
 </div>

@@ -29,7 +29,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div ng-show="currentUser" class="container">
+<div  class="container">
 
 <h1> {{project.name}}</h1>
 <p> {{project.description}} </p>
@@ -37,11 +37,11 @@
    <a class="btn btn-primary " href="/projects/{{project.id}}/maps">Add/View Maps</a>
    <a  class="btn btn-primary " href="/projects/{{project.id}}/timeline">Add/View Timelines</a>
   <a class="btn btn-primary " href="/projects/{{project.id}}/discussion">Join Discussion</a>
-   <button ng-click="newProject()" class="btn btn-primary ">Edit Project Details</button>
+   <button ng-click="newProject()" ng-show="currentUser" class="btn btn-primary ">Edit Project Details</button>
 <hr>
-<h2>Students</h2>
+<h2 ng-show="currentUser">Students</h2>
 <alerts></alerts>
-<table class="table">
+<table ng-show="currentUser" class="table">
       <thead>
         <tr>
           <th>First Name</th>
@@ -63,8 +63,8 @@
         </tr>
       </tbody>
   </table>
-<hr>
-<button ng-click="newStudent()" class="btn btn-primary margin-bottom">Add a Student</button>
+<hr ng-show="currentUser" >
+<button ng-show="currentUser" ng-click="newStudent()" class="btn btn-primary margin-bottom">Add a Student</button>
 
 </div>
 

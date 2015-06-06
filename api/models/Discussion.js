@@ -11,9 +11,13 @@ module.exports = {
     post: {
       type: 'string'
     },
+    commenter:  {
+     type: 'string'
+    },
       project: {
         model: "Project"
     }
+
   }
 };
 
