@@ -1,7 +1,6 @@
 ClioApp.controller('TimelineEventModalCtrl', ['$scope', 'UserService', '$modalInstance',  'Project', '$routeParams', 'Timeline', 'EditTimeline', 'AddEvent',
   function($scope, UserService, $modalInstance, Project, $routeParams, Timeline, EditTimeline, AddEvent) {
 
-console.log($routeParams)
 
   Timeline.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
 

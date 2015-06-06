@@ -1,18 +1,19 @@
 ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project', 'Discussion','$routeParams', 'UserService', 'StudentUserService',
   function($scope, $modal, AlertService, Project, Discussion, $routeParams, UserService, StudentUserService) {
 
-// if(!UserService.currentUser){
-//   $location.path('/');
-// }
 
   $scope.UserService = UserService;
 
   $scope.$watchCollection('UserService', function() {
     $scope.currentUser = UserService.currentUser;
-
   })
+
   console.log("test", StudentUserService.currentUser)
   console.log("test 2", UserService.currentUser)
+
+  if(!UserService.currentUser && !StudentUserService.currentStudentUser){
+    $location.path('/');
+  }
 
   if (UserService.currentUser) {
     var commenter = UserService.currentUser.firstName + " " + UserService.currentUser.lastName
@@ -24,7 +25,7 @@ ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project'
 
   console.log(commenter)
 
-  console.log($routeParams)
+
   Project.get({id: $routeParams.id}, function(data) {
     $scope.project = data
       $scope.loadPosts();

@@ -1,20 +1,26 @@
-ClioApp.controller('TimelineShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Timeline', 'AddEvent', 'UserService', '$location','$route',
-    function($scope,$modal,$routeParams, Project, Timeline, AddEvent, UserService, $location, $route) {
-    console.log('timeline show controller online')
+ClioApp.controller('TimelineShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Timeline', 'AddEvent', 'UserService', '$location','$route', 'StudentUserService',
+    function($scope,$modal,$routeParams, Project, Timeline, AddEvent, UserService, $location, $route, StudentUserService) {
 
-  $scope.UserService = UserService;
+$scope.UserService = UserService;
 
-  $scope.$watchCollection('UserService', function() {
-    $scope.currentUser = UserService.currentUser;
-  })
+$scope.StudentUserService = StudentUserService
 
-  Project.get({id: $routeParams.projectId}, function(data) {
-    $scope.project = data
- });
+$scope.$watchCollection('StudentUserService', function() {
+  $scope.currentStudentUser = StudentUserService.currentStudentUser;
+})
 
-  // if(!UserService.currentUser){
-  //   $location.path('/');
-  // }
+$scope.$watchCollection('UserService', function() {
+  $scope.currentUser = UserService.currentUser;
+})
+
+if(!UserService.currentUser && !StudentUserService.currentStudentUser){
+  $location.path('/');
+}
+
+Project.get({id: $routeParams.projectId}, function(data) {
+  $scope.project = data
+});
+
 
 $scope.date = []
   AddEvent.query({id: $routeParams.id}, function(eventData) {

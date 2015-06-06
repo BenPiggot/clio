@@ -1,18 +1,31 @@
-ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Map','AddMarker', 'UserService',
-  function($scope, $modal, $routeParams, Project, Map, AddMarker, UserService) {
+ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Map','AddMarker', 'UserService', 'StudentUserService',
+  function($scope, $modal, $routeParams, Project, Map, AddMarker, UserService, StudentUserService) {
+
+
+  $scope.UserService = UserService;
+
+  $scope.StudentUserService = StudentUserService
+
+  $scope.$watchCollection('StudentUserService', function() {
+    $scope.currentStudentUser = StudentUserService.currentStudentUser;
+  })
+
+  $scope.$watchCollection('UserService', function() {
+    $scope.currentUser = UserService.currentUser;
+  })
+
+
+  if(!UserService.currentUser && !StudentUserService.currentStudentUser){
+  $location.path('/');
+  }
 
   Project.get({id: $routeParams.projectId}, function(data) {
     $scope.project = data
   });
 
 
-  if(!UserService.currentUser){
-    $location.path('/');
-  }
-
-
-     $scope.mapShow = false;
-     $scope.markers = []
+   $scope.mapShow = false;
+   $scope.markers = []
 
   AddMarker.query({id: $routeParams.id}, function(markerData) {
     for (var i = 0; i < markerData.length; i++) {
@@ -72,6 +85,7 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
       })
     });
   };
+
 
 $scope.editMap = function() {
  $modal.open({

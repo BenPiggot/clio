@@ -1,10 +1,23 @@
-ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location', 'EditMap', 'AlertService',
- function($scope, $modal, $routeParams, Project, UserService, $location, EditMap, AlertService) {
+ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location', 'EditMap', 'AlertService', 'StudentUserService',
+ function($scope, $modal, $routeParams, Project, UserService, $location, EditMap, AlertService, StudentUserService) {
 
 
-// if(!UserService.currentUser){
-//   $location.path('/');
-// }
+  $scope.UserService = UserService;
+
+  $scope.StudentUserService = StudentUserService
+
+  $scope.$watchCollection('StudentUserService', function() {
+    $scope.currentStudentUser = StudentUserService.currentStudentUser;
+  })
+
+  $scope.$watchCollection('UserService', function() {
+    $scope.currentUser = UserService.currentUser;
+  })
+
+
+ if(!UserService.currentUser && !StudentUserService.currentStudentUser){
+    $location.path('/');
+  }
 
 // L.mapbox.accessToken = 'pk.eyJ1IjoiYmVucGlnZ290IiwiYSI6ImYwU2swWkUifQ.MJDSGs4FaCV1GlurP-nIDA';
 // // Create a map in the div #map
@@ -96,7 +109,7 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
         })
       }
     } else {
-      AlertService.add('danger', 'You cannot edit the student list.')
+      AlertService.add('danger', 'You cannot edit the map list.')
     }
   }
 
