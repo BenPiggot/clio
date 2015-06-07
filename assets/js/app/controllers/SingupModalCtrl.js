@@ -12,6 +12,7 @@ ClioApp.controller('SignupModalCtrl', ['$scope', 'UserService', '$modalInstance'
       user.password = $scope.password;
       user.$save()
       $modalInstance.close();
+        AlertService.add('success', 'Welcome to Clio! Please login as an instructor.')
     }
 
   $scope.cancel = function () {

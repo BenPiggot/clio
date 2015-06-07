@@ -1,5 +1,5 @@
 ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', 'StudentUserService', 'AlertService',
-     function($scope, $rootScope, $modal, UserService, AlertService) {
+     function($scope, $rootScope, $modal, UserService, StudentUserService, AlertService) {
 
  console.log('home controller loaded')
 
@@ -44,13 +44,6 @@ $scope.image = imageArray[number]
       controller: 'SignupModalCtrl'
     }).result.then(function(data) {
       console.log(data)
-      AlertService.add('success', 'Welcome to Clio! Please login.')
-    })
-  }
-
-  $scope.logout = function() {
-    UserService.logout(function(err, data){
-
     })
   }
 
