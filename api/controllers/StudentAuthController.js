@@ -27,6 +27,7 @@ module.exports = {
 
   //DELETE /api/studentAuth
   studentLogout: function(req, res) {
+    console.log("It happened!!!!")
     delete req.session.studentUser;
     res.send({result: true})
   }

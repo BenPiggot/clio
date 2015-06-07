@@ -1,11 +1,18 @@
-ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project', 'Discussion','$routeParams', 'UserService', 'StudentUserService',
-  function($scope, $modal, AlertService, Project, Discussion, $routeParams, UserService, StudentUserService) {
+ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project', 'Discussion','$routeParams', 'UserService', 'StudentUserService', '$location',
+  function($scope, $modal, AlertService, Project, Discussion, $routeParams, UserService, StudentUserService, $location) {
 
 
   $scope.UserService = UserService;
 
   $scope.$watchCollection('UserService', function() {
     $scope.currentUser = UserService.currentUser;
+
+  })
+
+  $scope.StudentUserService = StudentUserService
+
+  $scope.$watchCollection('StudentUserService', function() {
+    $scope.currentStudentUser = StudentUserService.currentStudentUser;
   })
 
   console.log("test", StudentUserService.currentUser)
@@ -52,6 +59,20 @@ ClioApp.controller('DiscussionCtrl',['$scope','$modal','AlertService', 'Project'
         $scope.post = ""
       });
 
+  }
+
+
+ $scope.logout = function() {
+    UserService.logout(function(err, data){
+      $location.path('/')
+    })
+  }
+
+
+ $scope.studentLogout = function() {
+    StudentUserService.studentLogout(function(err, data){
+      $location.path('/')
+    })
   }
 
 

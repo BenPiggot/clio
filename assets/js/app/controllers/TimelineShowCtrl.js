@@ -152,4 +152,16 @@ $scope.$watchCollection($scope.date, function(){
         TimelineCreate()
   })
 
+   $scope.logout = function() {
+      UserService.logout(function(err, data){
+        $location.path('/')
+      })
+    }
+
+
+   $scope.studentLogout = function() {
+      StudentUserService.studentLogout(function(err, data){
+        $location.path('/')
+      })
+    }
   }])

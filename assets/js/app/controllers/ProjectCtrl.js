@@ -64,11 +64,13 @@ $scope.projects = [];
 
 
   $scope.loadStudentProjects = function() {
-    console.log('new function test', StudentUserService.currentStudentUser.projectId)
-    Project.query({id: UserService.currentUser.projectId},function(data) {
-      console.log(data)
+    Project.query({id: UserService.currentUser.project},function(data) {
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].id === StudentUserService.currentStudentUser.project) {
+          $scope.projects.push(data[i])
+        }
+      }
       AlertService.clear()
-      $scope.projects = data;
     })
   }
 
@@ -80,4 +82,16 @@ if (StudentUserService.currentStudentUser) {
   $scope.loadStudentProjects();
 }
 
+ $scope.logout = function() {
+    UserService.logout(function(err, data){
+      $location.path('/')
+    })
+  }
+
+
+ $scope.studentLogout = function() {
+    StudentUserService.studentLogout(function(err, data){
+      $location.path('/')
+    })
+  }
 }])

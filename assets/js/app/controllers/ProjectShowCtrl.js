@@ -5,7 +5,7 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
     $scope.UserService = UserService;
 
     $scope.StudentUserService = StudentUserService
-
+    console.log(StudentUserService.currentStudentUser)
     $scope.$watchCollection('StudentUserService', function() {
       $scope.currentStudentUser = StudentUserService.currentStudentUser;
     })
@@ -102,6 +102,11 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
     })
   }
 
+ $scope.studentLogout = function() {
+    StudentUserService.studentLogout(function(err, data){
+      $location.path('/')
+    })
+  }
 
  $scope.showLogin = function() {
     $modal.open({

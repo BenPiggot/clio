@@ -1,5 +1,5 @@
-ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location', 'EditTimeline', 'StudentUserService',
-    function($scope,$modal,$routeParams, Project, UserService, $location, EditTimeline, StudentUserService) {
+ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location', 'EditTimeline', 'StudentUserService', 'AlertService',
+    function($scope,$modal,$routeParams, Project, UserService, $location, EditTimeline, StudentUserService, AlertService) {
     console.log('timeline controller online')
 
   $scope.UserService = UserService;
@@ -70,6 +70,18 @@ $scope.image = imageArray[number]
     }
   }
 
+ $scope.logout = function() {
+    UserService.logout(function(err, data){
+      $location.path('/')
+    })
+  }
+
+
+ $scope.studentLogout = function() {
+    StudentUserService.studentLogout(function(err, data){
+      $location.path('/')
+    })
+  }
 
 
   }])

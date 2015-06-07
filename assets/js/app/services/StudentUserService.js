@@ -46,8 +46,9 @@ ClioApp.factory('StudentUserService', ['$http', 'AlertService', function($http, 
     },
 
     studentLogout: function(callback) {
-      this.currentUser = false;
+      this.currentStudentUser = false;
 
+      console.log("It happened!!!!")
       $http.delete('/api/studentAuth')
       .success(function(data) {
         callback(null, data);
