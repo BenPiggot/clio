@@ -64,8 +64,8 @@ $scope.projects = [];
 
 
   $scope.loadStudentProjects = function() {
-    console.log('new function test', StudentUserService.currentStudentUser)
-    Project.query({id: UserService.currentUser.project},function(data) {
+    console.log('new function test', StudentUserService.currentStudentUser.projectId)
+    Project.query({id: UserService.currentUser.projectId},function(data) {
       console.log(data)
       AlertService.clear()
       $scope.projects = data;
