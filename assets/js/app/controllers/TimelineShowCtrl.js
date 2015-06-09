@@ -104,53 +104,53 @@ var TimelineCreate = function() {
 
 
 
-$scope.$watchCollection($scope.date, function(){
-    $scope.date = []
-      AddEvent.query({id: $routeParams.id}, function(eventData) {
-        for (var i = 0; i < eventData.length; i++) {
-          $scope.date.push({"startDate": moment.utc(eventData[i].startYear).format('YYYY,MM,DD').toString(),
-                            "endDate": moment.utc(eventData[i].endYear).format('YYYY,MM,DD').toString(),
-                            "headline": eventData[i].title,
-                            "text": eventData[i].text,
-                            "asset": {"media": eventData[i].medium, "thumbnail": eventData[i].medium}})
-        }
-      })
+// $scope.$watchCollection($scope.date, function(){
+//     $scope.date = []
+//       AddEvent.query({id: $routeParams.id}, function(eventData) {
+//         for (var i = 0; i < eventData.length; i++) {
+//           $scope.date.push({"startDate": moment.utc(eventData[i].startYear).format('YYYY,MM,DD').toString(),
+//                             "endDate": moment.utc(eventData[i].endYear).format('YYYY,MM,DD').toString(),
+//                             "headline": eventData[i].title,
+//                             "text": eventData[i].text,
+//                             "asset": {"media": eventData[i].medium, "thumbnail": eventData[i].medium}})
+//         }
+//       })
 
-    var TimelineCreate = function() {
-      Timeline.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
+//     var TimelineCreate = function() {
+//       Timeline.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
 
-        $scope.timeline = data[0]
+//         $scope.timeline = data[0]
 
-              $scope.timelineData = {
-                "timeline":
-                {
-                  "headline": $scope.timeline.title,
-                  "type":"default",
-                  "text": $scope.timeline.description,
-                  "asset": {
-                    "media":$scope.timeline.medium,
-                  },
-                  // "startDate": moment.utc($scope.timeline.startYear).format('YYYY,MM,DD').toString(),
-                  "date": $scope.date,
-                  "era": [
-                    {
-                      "startDate": moment.utc($scope.timeline.startYear).format('YYYY,MM,DD').toString(),
-                      "endDate":  moment.utc($scope.timeline.endYear).format('YYYY,MM,DD').toString()
-                      // "headline":"Headline Goes Here",
-                      // "text":"<p>Body text goes here, some HTML is OK</p>",
-                      // "tag":"This is Optional"
-                    }
+//               $scope.timelineData = {
+//                 "timeline":
+//                 {
+//                   "headline": $scope.timeline.title,
+//                   "type":"default",
+//                   "text": $scope.timeline.description,
+//                   "asset": {
+//                     "media":$scope.timeline.medium,
+//                   },
+//                   // "startDate": moment.utc($scope.timeline.startYear).format('YYYY,MM,DD').toString(),
+//                   "date": $scope.date,
+//                   "era": [
+//                     {
+//                       "startDate": moment.utc($scope.timeline.startYear).format('YYYY,MM,DD').toString(),
+//                       "endDate":  moment.utc($scope.timeline.endYear).format('YYYY,MM,DD').toString()
+//                       // "headline":"Headline Goes Here",
+//                       // "text":"<p>Body text goes here, some HTML is OK</p>",
+//                       // "tag":"This is Optional"
+//                     }
 
-                  ]
-                }
-              };
+//                   ]
+//                 }
+//               };
 
-            });
-        }
+//             });
+//         }
 
 
-        TimelineCreate()
-  })
+//         TimelineCreate()
+//   })
 
    $scope.logout = function() {
       UserService.logout(function(err, data){
