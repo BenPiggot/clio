@@ -5,12 +5,12 @@
  Intructors create an account and then construct a basic template for their. They can then invite students to join the site. Together, instructors and students can then build timelines, interactive maps, and share inforamtion and enage in conversation in a discussion forum. Clio is designed to be used as a tool that can supplement other class work or serve as a course on its own. For more, visit the site prototype at http://clio-app.herokuapp.com
 
 ## Framework
- Clio is an MVC app that uses AngularJS as its front end framework, Node/Sails.js as its server-side framework
+ Clio is a full-stack JavaScript MVC web application that uses AngularJS as its front end framework, Node/Sails.js as its server-side framework
 
 ## Models
  Clio uses MongoDB as its database, and includes 8 models, storing infomration about users (instructors), students, maps, maps locations, timelines, timeline events, and class discussions.
 
-## APIs, JavaScript Libraries, and NPM Modules used
+## JavaScript Libraries and NPM Modules used
  Mapbox, Leaflet.js, Timeline.js, Moment.js, Bcrypt, Geocoder
 
 
