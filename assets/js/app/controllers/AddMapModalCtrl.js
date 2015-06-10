@@ -21,6 +21,18 @@ ClioApp.controller('AddMapModalCtrl', ['$scope', 'UserService', '$modalInstance'
        } else {
         alert("Please choose either Neighborhood, City, Region, Country, Continent or World")
        }
+       // if ($scope.theme === "18th Century") {
+       //    $scope.theme = tilesDict.mapbox_pirates
+       // }
+       // else if ($scope.theme === "Grayscale") {
+       //    $scope.theme = tilesDict.mapbox_light
+       // }
+       // else if ($scope.theme === "Physical Features") {
+       //    $scope.theme = tilesDict.mapbox_outdoors
+       // }
+       // else {
+       //   $scope.theme = tilesDict.openstreetmap
+       // }
       console.log('awesome')
       var map = new AddMap()
       map.name = $scope.name;
