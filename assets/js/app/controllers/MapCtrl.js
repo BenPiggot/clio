@@ -83,8 +83,8 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
 
       angular.extend($scope, {
           center: {
-            lat: lat || 35,
-            lng: lng || 30,
+            lat: lat || 30,
+            lng: lng || 10,
             zoom: zoom || 2
           },
           defaults: {
