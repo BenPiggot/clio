@@ -5,7 +5,7 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
     $scope.UserService = UserService;
 
     $scope.StudentUserService = StudentUserService
-    console.log(StudentUserService.currentStudentUser)
+
     $scope.$watchCollection('StudentUserService', function() {
       $scope.currentStudentUser = StudentUserService.currentStudentUser;
     })
@@ -45,8 +45,10 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
     if (UserService.currentUser){
       if (confirm("Are you sure you want to remove this student?")) {
         EditStudent.delete({id: studentId}, function(data) {
-          console.log(data)
           AlertService.add('info', 'Student removed')
+          Project.get({id: $routeParams.id}, function(data) {
+            $scope.project = data
+          });
         })
       }
     } else {
