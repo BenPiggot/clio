@@ -70,16 +70,26 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
   }
 
 
+  // $('#map-changer').on('change', function() {
 
-  // $scope.changeTiles = function(tiles) {
-  //     $scope.tiles = tilesDict[tiles];
-  // };
+  //   var selection = $(this).val()
+
+  //   if (selection === "timapbox_pirates") {
+  //     var theme = tilesDict.mapbox_pirates
+  //   }
+  //   else if (selection === "openstreetmap") {
+  //     var theme  = tilesDict.openstreetmap
+  //   }
+  //   console.log(theme)
+  //   $scope.mapRenderInit(25,10,2, theme)
+  // });
+
 
   Project.get({id: $routeParams.id}, function(data) {
     $scope.project = data
     });
 
-  $scope.mapRenderInit = function(lat, lng, zoom) {
+  $scope.mapRenderInit = function(lat, lng, zoom, theme) {
 
       angular.extend($scope, {
           center: {

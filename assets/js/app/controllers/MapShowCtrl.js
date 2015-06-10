@@ -24,7 +24,7 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 
   });
 
 
-var tilesDict = {
+  var tilesDict = {
     openstreetmap: {
         url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         options: {
@@ -82,7 +82,7 @@ var tilesDict = {
 
   Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
        $scope.map = data[0]
-       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, tilesDict.mapbox_pirates)
+       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
     })
 
 
@@ -98,7 +98,7 @@ var tilesDict = {
           defaults: {
             scrollWheelZoom: false
           },
-          tiles: tilesDict.openstreetmap
+          tiles: theme
         })
 
       $scope.markers
@@ -125,7 +125,7 @@ var tilesDict = {
       })
       Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
        $scope.map = data[0]
-       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers)
+       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
       })
     });
   };
@@ -146,7 +146,7 @@ $scope.editMap = function() {
       })
       Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
        $scope.map = data[0]
-       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers)
+       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
       })
     });
   }

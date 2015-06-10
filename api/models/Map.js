@@ -26,7 +26,7 @@ module.exports = {
       type: 'integer'
     },
     theme: {
-      type: 'string'
+      type: 'object'
     },
     latitude: {
       type: 'float'
