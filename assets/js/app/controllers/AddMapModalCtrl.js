@@ -51,36 +51,37 @@ ClioApp.controller('AddMapModalCtrl', ['$scope', 'UserService', '$modalInstance'
     }
 
     $scope.addMap = function() {
+      var zoom
+      var theme
       if($scope.zoom) {
        if ($scope.zoom === "Neighborhood") {
-        $scope.zoom = 14
+        zoom = 14
        } else if ($scope.zoom === "City") {
-        $scope.zoom = 10
+        zoom = 10
        } else if ($scope.zoom === "Region") {
-        $scope.zoom = 8
+        zoom = 8
        } else if ($scope.zoom === "Country") {
-        $scope.zoom = 5
+        zoom = 5
        } else if ($scope.zoom === "Continent") {
-        $scope.zoom = 4
+        zoom = 4
        } else if ($scope.zoom === "World") {
-        $scope.zoom = 2
+        zoom = 2
        } else {
         alert("Please choose either Neighborhood, City, Region, Country, Continent or World")
        }
      }
      if($scope.theme) {
       if ($scope.theme === "18th Century") {
-          $scope.theme = tilesDict.mapbox_pirates
-          console.log("Big test!!!!!!", $scope.theme)
+          theme = tilesDict.mapbox_pirates
        }
        else if ($scope.theme === "Grayscale") {
-          $scope.theme = tilesDict.mapbox_light
+          theme = tilesDict.mapbox_light
        }
        else if ($scope.theme === "Physical Features") {
-          $scope.theme = tilesDict.mapbox_outdoors
+          theme = tilesDict.mapbox_outdoors
        }
        else {
-         $scope.theme = tilesDict.openstreetmap
+         theme = tilesDict.openstreetmap
        }
      }
       var map = new AddMap()
@@ -88,8 +89,8 @@ ClioApp.controller('AddMapModalCtrl', ['$scope', 'UserService', '$modalInstance'
       map.description = $scope.description
       map.country = $scope.country;
       map.city = $scope.city;
-      map.zoom = $scope.zoom;
-      map.theme = $scope.theme;
+      map.zoom = zoom;
+      map.theme = theme;
       map.$save({projectId: $scope.project.id}, function(data) {
         console.log('map created')
         console.log(data)

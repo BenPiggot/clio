@@ -49,33 +49,35 @@ var tilesDict = {
 
     $scope.updateMap = function() {
       console.log('trying')
+      var zoom
+      var theme
       if($scope.zoom) {
        if ($scope.zoom === "Neighborhood") {
-        $scope.zoom = 14
+        zoom = 14
        } else if ($scope.zoom === "City") {
-        $scope.zoom = 10
+        zoom = 10
        } else if ($scope.zoom === "Region") {
-        $scope.zoom = 8
+        zoom = 8
        } else if ($scope.zoom === "Country") {
-        $scope.zoom = 5
+       zoom = 5
        } else if ($scope.zoom === "Continent") {
-        $scope.zoom = 4
+        zoom = 4
        } else if ($scope.zoom === "World") {
-        $scope.zoom = 2
+        zoom = 2
        }
      }
      if($scope.theme) {
       if ($scope.theme === "18th Century") {
-          $scope.theme = tilesDict.mapbox_pirates
+          theme = tilesDict.mapbox_pirates
        }
        else if ($scope.theme === "Grayscale") {
-          $scope.theme = tilesDict.mapbox_light
+          theme = tilesDict.mapbox_light
        }
        else if ($scope.theme === "Physical Features") {
-          $scope.theme = tilesDict.mapbox_outdoors
+          theme = tilesDict.mapbox_outdoors
        }
        else {
-         $scope.theme = tilesDict.openstreetmap
+         theme = tilesDict.openstreetmap
        }
      }
       EditMap.update({id: $routeParams.id},
@@ -83,8 +85,8 @@ var tilesDict = {
          description: $scope.description,
          country: $scope.country,
          city: $scope.city,
-         zoom: $scope.zoom,
-         theme: $scope.theme},
+         zoom: zoom,
+         theme: theme},
         function(data){
         console.log('updated',data);
         $modalInstance.close();
