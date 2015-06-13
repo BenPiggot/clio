@@ -136,6 +136,21 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
     });
   }
 
+
+ $scope.logout = function() {
+    UserService.logout(function(err, data){
+      $location.path('/')
+    })
+  }
+
+
+ $scope.studentLogout = function() {
+    StudentUserService.studentLogout(function(err, data){
+      $location.path('/')
+    })
+  }
+
+
 }])
 
 

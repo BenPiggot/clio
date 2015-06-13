@@ -1,5 +1,5 @@
-ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Map','AddMarker', 'UserService', 'StudentUserService',
-  function($scope, $modal, $routeParams, Project, Map, AddMarker, UserService, StudentUserService) {
+ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location', 'Project', 'Map','AddMarker', 'UserService', 'StudentUserService',
+  function($scope, $modal, $routeParams, $location, Project, Map, AddMarker, UserService, StudentUserService) {
 
 
   $scope.UserService = UserService;
@@ -150,5 +150,20 @@ $scope.editMap = function() {
       })
     });
   }
+
+
+ $scope.logout = function() {
+    UserService.logout(function(err, data){
+      $location.path('/')
+    })
+  }
+
+
+ $scope.studentLogout = function() {
+    StudentUserService.studentLogout(function(err, data){
+      $location.path('/')
+    })
+  }
+
 
 }])
