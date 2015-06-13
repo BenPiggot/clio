@@ -113,9 +113,9 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
         EditMap.delete({id: mapId}, function(data) {
           console.log(data)
           AlertService.add('info', 'Map removed')
-          $scope.$apply(Project.get({id: $routeParams.id}, function(data) {
+          Project.get({id: $routeParams.id}, function(data) {
           $scope.project = data
-          }));
+          });
         })
       }
     } else {
@@ -128,11 +128,11 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
         templateUrl:'/views/maps/addMapModal.html',
         controller: 'AddMapModalCtrl'
       }).result.then(function(){
-        $scope.$apply(Project.get({id: $routeParams.id}, function(data) {
+        Project.get({id: $routeParams.id}, function(data) {
         console.log(data.maps[0].id)
         $scope.project = data
 
-      }));
+      });
     });
   }
 

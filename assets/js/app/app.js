@@ -1,4 +1,4 @@
-var ClioApp = angular.module('ClioApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'leaflet-directive', 'pippTimelineDirectives']);
+var ClioApp = angular.module('ClioApp', ['ngRoute', 'ngResource', 'ngTouch', 'ui.bootstrap', 'leaflet-directive', 'pippTimelineDirectives']);
 
 
 ClioApp.run(['$rootScope', 'UserService', 'AlertService', function($rootScope, UserService, AlertService) {
