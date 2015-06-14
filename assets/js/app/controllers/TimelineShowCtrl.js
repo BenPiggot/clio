@@ -24,7 +24,7 @@ Project.get({id: $routeParams.projectId}, function(data) {
 if (screen.height >= 1000) {
   $scope.height = 730
 } else {
-  $scope.height = 580
+  $scope.height = 560
 }
 
 $scope.date = []
@@ -106,7 +106,6 @@ var TimelineCreate = function() {
   $scope.reloadRoute = function() {
      $route.reload();
   }
-
 
 
 // $scope.$watchCollection($scope.date, function(){
