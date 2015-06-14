@@ -22,10 +22,8 @@ Project.get({id: $routeParams.projectId}, function(data) {
 });
 
 if (screen.height >= 1000) {
-  console.log("awesome!!!!!!!!")
-  $scope.height = 680
+  $scope.height = 730
 } else {
-  console.log("not awesome!!!!!!!!!!")
   $scope.height = 580
 }
 
