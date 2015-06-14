@@ -24,7 +24,7 @@ Project.get({id: $routeParams.projectId}, function(data) {
 if (screen.height >= 1000) {
   $scope.height = 730
 } else {
-  $scope.height = 560
+  $scope.height = 550
 }
 
 $scope.date = []
