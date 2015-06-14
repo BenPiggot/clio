@@ -142,7 +142,7 @@ a:hover {
 
 .front-page-buttons {
   width: 100%;
- margin: 35% 0% 0% 0%;
+ margin: 33% 0% 0% 0%;
  text-align: center;
 }
 
@@ -240,9 +240,10 @@ margin-left {
 }
 
 
+
 /********* MEDIA QUERIES ***********/
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 780px) and (min-height: 750px) {
 
   .header {
     font-size: 80px;
@@ -311,7 +312,6 @@ margin-left {
 
   .media-margin {
     margin-top: 0.5em;
-
   }
 
 }
@@ -439,6 +439,10 @@ margin-left {
       width: 60%
   }
 
-
 }
 
+@media screen and (min-height: 700px) {
+  .timeline-header {
+    height: 150px;
+  }
+}
