@@ -21,6 +21,13 @@ Project.get({id: $routeParams.projectId}, function(data) {
   $scope.project = data
 });
 
+if (screen.height >= 1000) {
+  console.log("awesome!!!!!!!!")
+  $scope.height = 680
+} else {
+  console.log("not awesome!!!!!!!!!!")
+  $scope.height = 580
+}
 
 $scope.date = []
   AddEvent.query({id: $routeParams.id}, function(eventData) {

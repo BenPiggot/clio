@@ -15,7 +15,7 @@ angular.module('pippTimelineDirectives', [])
     scope: {
       source: '=',
       width: '@',
-      height: '@',
+      height: '=',
       startZoomAdjust: '@',
       startAtEnd: '@',
       startAtSlide: '@',
