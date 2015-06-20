@@ -12,7 +12,7 @@ ClioApp.factory('UserService', ['$http', 'AlertService', function($http, AlertSe
       .success(function(data) {
         if(data && data.result && data.user) {
           self.currentUser = data.user;
-          AlertService.add('success', 'User has logged in')
+
         } else {
           self.currentUser = false;
         }

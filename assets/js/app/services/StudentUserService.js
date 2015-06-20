@@ -12,10 +12,7 @@ ClioApp.factory('StudentUserService', ['$http', 'AlertService', function($http, 
       .success(function(data) {
         console.log(data.user)
         if(data && data.user) {
-          console.log('predefinition', data.user)
           self.currentStudentUser = data.user;
-          console.log('posttttttttttifinition', self.currentStudentUser)
-          AlertService.add('success', 'User has logged in')
         } else {
           self.currentStudentUser = false;
         }
