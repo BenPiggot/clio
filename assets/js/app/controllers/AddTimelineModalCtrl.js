@@ -1,10 +1,12 @@
 ClioApp.controller('AddTimelineModalCtrl', ['$scope', 'UserService', '$modalInstance', 'AddTimeline', 'Project', '$routeParams',
   function($scope, UserService, $modalInstance, AddTimeline, Project, $routeParams) {
 
+// http get request using Project service, renders all user projects
   Project.get({id: $routeParams.id}, function(data) {
     $scope.project = data
   })
 
+// http post request that adds new timeline with user specifications to database via AddTimeline service
     $scope.addTimeline = function() {
       console.log('awesome')
       var timeline = new AddTimeline()
@@ -21,11 +23,9 @@ ClioApp.controller('AddTimelineModalCtrl', ['$scope', 'UserService', '$modalInst
       })
     }
 
+// Small function that closes modal
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
 
 }]);
-
-
-//The Iranian Revolution occurred between 1978 and 1979, but had roots much earlier in Iranian history.

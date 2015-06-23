@@ -1,9 +1,9 @@
 ClioApp.controller('StudentAuthLoginModalCtrl', ['$scope', 'StudentUserService', '$modalInstance', '$location', 'AlertService',
               function($scope, StudentUserService, $modalInstance, $location, AlertService) {
 
+// Client-side student login function, sends http request via StudentserService
+// service for further handling
   $scope.studentLogin = function() {
-    console.log(StudentUserService)
-    // alert('you want to login with ' + $scope.email + ' : ' +$scope.password)
     StudentUserService.studentLogin($scope.email, function(err, data) {
       if(err) {
         console.log(err)
@@ -19,6 +19,7 @@ ClioApp.controller('StudentAuthLoginModalCtrl', ['$scope', 'StudentUserService',
     })
   }
 
+// Small function that closes modal
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };

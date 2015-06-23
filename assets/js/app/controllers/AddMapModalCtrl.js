@@ -1,10 +1,12 @@
 ClioApp.controller('AddMapModalCtrl', ['$scope', 'UserService', '$modalInstance', 'AddMap', 'Project', '$routeParams',
   function($scope, UserService, $modalInstance, AddMap, Project, $routeParams) {
 
+// http get request using Project service, renders all user projects
   Project.get({id: $routeParams.id}, function(data) {
     $scope.project = data
   })
 
+// object of map themes from Mapbox API
   var tilesDict = {
     openstreetmap: {
         url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -50,6 +52,8 @@ ClioApp.controller('AddMapModalCtrl', ['$scope', 'UserService', '$modalInstance'
       }
     }
 
+// Add map function, http post request to database via AddMap service;
+// converts user zoom and map theme inputs for server-side processing
     $scope.addMap = function() {
       var zoom
       var theme
@@ -99,6 +103,7 @@ ClioApp.controller('AddMapModalCtrl', ['$scope', 'UserService', '$modalInstance'
       })
     }
 
+// Small function that closes modal
    $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     };

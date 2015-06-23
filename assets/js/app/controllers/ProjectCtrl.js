@@ -1,13 +1,14 @@
 ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService', 'Project', 'UserService', '$location', 'StudentUserService',
   function($scope, $rootScope, $modal, AlertService, Project, UserService, $location, StudentUserService) {
 
+
+// UserService and StudentUserService loaded into scope to watch for user/student user login
   $scope.UserService = UserService;
 
   $scope.$watchCollection('UserService', function() {
     $scope.currentUser = UserService.currentUser;
 
   })
-
 
   $scope.StudentUserService = StudentUserService
 
@@ -16,7 +17,7 @@ ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService',
   })
 
 
-
+// array of images displayed to be desplayed randomly
 var imageArray = [
 
   "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/EKN/67/0130/VN.JPG",
@@ -30,17 +31,23 @@ var imageArray = [
   // "http://i.imgur.com/jRJpU.jpg"
 ]
 
+// Functionality for displaying random images from imageArray
 var number = Math.floor(Math.random() * 8)
 
 $scope.image = imageArray[number]
 
+
+// Conditional statement to reroute unauthorized users to homepage
   if(!UserService.currentUser && !StudentUserService.currentStudentUser){
     $location.path('/');
   }
 
+// Page loads initially without project information
 $scope.projects = [];
 
 
+// Function that opens modal allowing logged-in instructors to create new projects;
+// Callback function then re-renders the page with the new project included
   $scope.newProject = function() {
   if (UserService.currentUser) {
     $modal.open({
@@ -54,7 +61,7 @@ $scope.projects = [];
 }
 }
 
-
+// Function that loads new projects associated with the logged-in instructor
   $scope.loadProjects = function() {
     console.log('load posts working')
     Project.query({userId: UserService.currentUser.id},function(data) {
@@ -63,7 +70,7 @@ $scope.projects = [];
     })
   }
 
-
+// Function that loads new projects associated with the logged-in student
   $scope.loadStudentProjects = function() {
     Project.query({id: UserService.currentUser.project},function(data) {
       for (var i = 0; i < data.length; i++) {
@@ -75,6 +82,7 @@ $scope.projects = [];
     })
   }
 
+
 if (UserService.currentUser) {
   $scope.loadProjects();
 }
@@ -83,6 +91,8 @@ if (StudentUserService.currentStudentUser) {
   $scope.loadStudentProjects();
 }
 
+
+// Client-side logout function for instructors
  $scope.logout = function() {
     UserService.logout(function(err, data){
       $location.path('/')
@@ -90,6 +100,7 @@ if (StudentUserService.currentStudentUser) {
   }
 
 
+// Client-side logout function for students
  $scope.studentLogout = function() {
     StudentUserService.studentLogout(function(err, data){
       $location.path('/')

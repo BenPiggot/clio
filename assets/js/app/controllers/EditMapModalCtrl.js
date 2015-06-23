@@ -1,6 +1,7 @@
 ClioApp.controller('EditMapModalCtrl', ['$scope', 'UserService', '$modalInstance',  'Project', '$routeParams', 'Map', 'EditMap',
   function($scope, UserService, $modalInstance, Project, $routeParams, Map, EditMap) {
 
+// object of map themes from Mapbox API
 var tilesDict = {
     openstreetmap: {
         url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -47,8 +48,9 @@ var tilesDict = {
     }
 
 
+// http put request to update map parameters made via Edit Map service;
+// User zoom and theme inputs are transformed prior to http request
     $scope.updateMap = function() {
-      console.log('trying')
       var zoom
       var theme
       if($scope.zoom) {

@@ -2,7 +2,7 @@ ClioApp.controller('SignupModalCtrl', ['$scope', 'UserService', '$modalInstance'
               function($scope, UserService, $modalInstance, $location, AlertService, AddUser) {
 
 
-
+// http post request creating a new user
   $scope.signup = function() {
       console.log('awesome')
       var user = new AddUser()
@@ -15,6 +15,8 @@ ClioApp.controller('SignupModalCtrl', ['$scope', 'UserService', '$modalInstance'
         AlertService.add('success', 'Welcome to Clio! Please login as an instructor.')
     }
 
+
+// Small function that closes modal
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };

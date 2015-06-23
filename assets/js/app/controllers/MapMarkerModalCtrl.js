@@ -1,17 +1,16 @@
 ClioApp.controller('MapMarkerModalCtrl', ['$scope', 'UserService', '$modalInstance', '$routeParams', 'Map', 'AddMarker',
   function($scope, UserService, $modalInstance, $routeParams, Map, AddMarker) {
 
-    console.log("Doing better now!!")
-    console.log($routeParams)
-    console.log($routeParams.projectId)
-    console.log($routeParams.id)
 
+// http get request that loads current map via Map service
   Map.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
     console.log(data[0])
     $scope.map = data[0]
   })
 
 
+// http post request that sends user information about new markers to database;
+// the map then re-renders with new marker included
     $scope.addMarker = function() {
       console.log('awesome')
       var marker = new AddMarker()
@@ -28,6 +27,8 @@ ClioApp.controller('MapMarkerModalCtrl', ['$scope', 'UserService', '$modalInstan
       })
     }
 
+
+// Small function that closes modal
    $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };

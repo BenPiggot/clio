@@ -2,27 +2,27 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
  function($scope, $modal, $routeParams, Project, UserService, $location, EditMap, AlertService, StudentUserService) {
 
 
-  $scope.UserService = UserService;
+// UserService and StudentUserService loaded into scope to watch for user/student user login
+$scope.UserService = UserService;
 
-  $scope.StudentUserService = StudentUserService
+$scope.StudentUserService = StudentUserService
 
-  $scope.$watchCollection('StudentUserService', function() {
-    $scope.currentStudentUser = StudentUserService.currentStudentUser;
-  })
+$scope.$watchCollection('StudentUserService', function() {
+  $scope.currentStudentUser = StudentUserService.currentStudentUser;
+})
 
-  $scope.$watchCollection('UserService', function() {
-    $scope.currentUser = UserService.currentUser;
-  })
-
-
- if(!UserService.currentUser && !StudentUserService.currentStudentUser){
-    $location.path('/');
-  }
-
-// L.mapbox.accessToken = 'pk.eyJ1IjoiYmVucGlnZ290IiwiYSI6ImYwU2swWkUifQ.MJDSGs4FaCV1GlurP-nIDA';
-// // Create a map in the div #map
+$scope.$watchCollection('UserService', function() {
+  $scope.currentUser = UserService.currentUser;
+})
 
 
+// Conditional statement to reroute unauthorized users to homepage
+if(!UserService.currentUser && !StudentUserService.currentStudentUser){
+  $location.path('/');
+}
+
+
+// object of map themes from Mapbox API
   var tilesDict = {
       openstreetmap: {
           url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -70,27 +70,15 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
   }
 
 
-  // $('#map-changer').on('change', function() {
-
-  //   var selection = $(this).val()
-
-  //   if (selection === "timapbox_pirates") {
-  //     var theme = tilesDict.mapbox_pirates
-  //   }
-  //   else if (selection === "openstreetmap") {
-  //     var theme  = tilesDict.openstreetmap
-  //   }
-  //   console.log(theme)
-  //   $scope.mapRenderInit(25,10,2, theme)
-  // });
-
-
+// http get request that loads current project via Project service
   Project.get({id: $routeParams.id}, function(data) {
     $scope.project = data
     });
 
-  $scope.mapRenderInit = function(lat, lng, zoom, theme) {
 
+// Function that renders Leaflet.js map on page load; utilizes
+// Angular Leaflet directives from https://github.com/tombatossals/angular-leaflet-directive
+  $scope.mapRenderInit = function(lat, lng, zoom, theme) {
       angular.extend($scope, {
           center: {
             lat: lat || 25,
@@ -104,9 +92,13 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
         })
     }
 
+
+// Where the mapRenderInit funciton is actually called
     $scope.mapRenderInit()
 
 
+// http delete request for deleting maps, made via EditMap service;
+// Only instructors are allowed to delete maps
   $scope.deleteMap = function(mapId) {
     if (UserService.currentUser){
       if (confirm("Are you sure you want to remove this map?")) {
@@ -123,6 +115,9 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
     }
   }
 
+
+// Function that opens modal where students/instructors can build enter parameters for a
+// new map
   $scope.newMap = function() {
       $modal.open({
         templateUrl:'/views/maps/addMapModal.html',
@@ -137,6 +132,7 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
   }
 
 
+// Client-side logout function for instructors
  $scope.logout = function() {
     UserService.logout(function(err, data){
       $location.path('/')
@@ -144,12 +140,12 @@ ClioApp.controller('MapCtrl',['$scope','$modal', '$routeParams', 'Project', 'Use
   }
 
 
+// Client-side logout function for students
  $scope.studentLogout = function() {
     StudentUserService.studentLogout(function(err, data){
       $location.path('/')
     })
   }
-
 
 }])
 

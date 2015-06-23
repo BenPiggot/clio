@@ -1,9 +1,8 @@
 ClioApp.controller('CreateProjectModalCtrl', ['$scope', 'UserService', '$modalInstance', 'Project', '$location',
   function($scope, UserService, $modalInstance, Project, $location) {
 
-  console.log(UserService.currentUser)
+// http post request that adds new project with user specifications to database via AddTimeline service
   $scope.createProject = function() {
-
      var project = new Project();
      project.name = $scope.name;
      project.description = $scope.description;
@@ -15,6 +14,8 @@ ClioApp.controller('CreateProjectModalCtrl', ['$scope', 'UserService', '$modalIn
 
   }
 
+
+// Small function that closes modal
  $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };

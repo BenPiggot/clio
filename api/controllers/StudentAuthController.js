@@ -1,6 +1,6 @@
 module.exports = {
 
-  //POST /api/studentAuth
+  // login function for student users
   studentLogin: function(req, res) {
     Student.findOne({email: req.body.email}).then(function(student) {
       if(student) {
@@ -20,12 +20,12 @@ module.exports = {
     })
 
   },
-  //GET /api/studentAuth
+  // get student user login information
   studentCheck: function(req, res) {
     res.send({studentUser:req.session.studentUser || false})
   },
 
-  //DELETE /api/studentAuth
+  //logout function for student users
   studentLogout: function(req, res) {
     delete req.session.studentUser;
     console.log("It happened!!!!")

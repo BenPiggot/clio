@@ -8,7 +8,7 @@ var bcrypt = require('bcrypt');
 
 module.exports = {
 
-  //POST /api/auth
+  //User Login, server-side handling
   login: function(req, res) {
     User.findOne({email: req.body.email}).then(function(user) {
       if(user) {
@@ -33,15 +33,14 @@ module.exports = {
       }
 
     })
-    // req.body.password
   },
 
-   //GET /api/auth
+   //get user login infomration
   check: function(req, res) {
     res.send({user:req.session.user || false})
   },
 
-  //DELETE /api/auth
+  //user logout
   logout: function(req, res) {
     delete req.session.user;
     res.send({result: true})

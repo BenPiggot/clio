@@ -2,6 +2,7 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
   function($scope, $modal, $routeParams, $location, Project, Map, AddMarker, UserService, StudentUserService) {
 
 
+// UserService and StudentUserService loaded into scope to watch for user/student user login
   $scope.UserService = UserService;
 
   $scope.StudentUserService = StudentUserService
@@ -15,8 +16,9 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
   })
 
 
+// Conditional statement to reroute unauthorized users to homepage
   if(!UserService.currentUser && !StudentUserService.currentStudentUser){
-  $location.path('/');
+    $location.path('/');
   }
 
   Project.get({id: $routeParams.projectId}, function(data) {
@@ -24,6 +26,7 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
   });
 
 
+// object of map themes from Mapbox API
   var tilesDict = {
     openstreetmap: {
         url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -69,10 +72,13 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
       }
     }
 
+
+// Map and markers are hidden at first because of asynchronous loading patterns
    $scope.mapShow = false;
    $scope.markers = []
 
 
+// Function that makes database request for all markers associated with the current map
   AddMarker.query({id: $routeParams.id}, function(markerData) {
     for (var i = 0; i < markerData.length; i++) {
       $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
@@ -80,13 +86,16 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
     }
   })
 
+// Function that makes a database request for the current map
   Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
        $scope.map = data[0]
        $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
     })
 
 
-
+// Function that renders Leaflet.js map on page load; utilizes
+// Angular Leaflet directives from https://github.com/tombatossals/angular-leaflet-directive
+// Note that map and markers display once this function's code executes
   $scope.mapRenderInit = function(lat, lng, zoom, markers, theme) {
     console.log(tilesDict.mapbox_pirates)
       angular.extend($scope, {
@@ -107,7 +116,8 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
     }
 
 
-
+// Function that opens modal allowing logged in users to create new markers;
+// Function callback re-renders page including new marker
   $scope.newMarker = function() {
     console.log('new marker!!!!!')
     $modal.open({
@@ -131,6 +141,8 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
   };
 
 
+// Function that opens modal allowing for logged in user to edit map;
+// Function callback re-renders page including with new map characteristics
 $scope.editMap = function() {
  $modal.open({
       templateUrl:'/views/maps/editMapModal.html',
@@ -152,6 +164,7 @@ $scope.editMap = function() {
   }
 
 
+// Client-side logout function for instructors
  $scope.logout = function() {
     UserService.logout(function(err, data){
       $location.path('/')
@@ -159,6 +172,7 @@ $scope.editMap = function() {
   }
 
 
+// Client-side logout function for students
  $scope.studentLogout = function() {
     StudentUserService.studentLogout(function(err, data){
       $location.path('/')

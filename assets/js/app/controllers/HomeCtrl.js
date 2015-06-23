@@ -1,10 +1,12 @@
 ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', 'StudentUserService', 'AlertService',
      function($scope, $rootScope, $modal, UserService, StudentUserService, AlertService) {
 
- console.log('home controller loaded')
 
- $scope.UserService = UserService;
+// Get UserService to check for login status changes
+$scope.UserService = UserService;
 
+
+// array of images displayed to be desplayed randomly
 var imageArray = [
 
   "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/EKN/67/0130/VN.JPG",
@@ -17,11 +19,14 @@ var imageArray = [
 
 ]
 
+
+// Functionality for displaying random images from imageArray
 var number = Math.floor(Math.random() * 7)
 
 $scope.image = imageArray[number]
 
 
+// Function that displays login modal for student users
   $scope.showStudentLogin = function() {
     console.log('student modal working')
     $modal.open({
@@ -30,6 +35,8 @@ $scope.image = imageArray[number]
     })
   }
 
+
+// Funciton that displays login modal for instructors
   $scope.showLogin = function() {
     $modal.open({
       templateUrl: '/views/auth/loginModal.html',
@@ -37,6 +44,8 @@ $scope.image = imageArray[number]
     })
   }
 
+
+// Function that displays signup modal
   $scope.showSignup = function() {
     console.log('sign up modal firing')
     $modal.open({
@@ -47,6 +56,8 @@ $scope.image = imageArray[number]
     })
   }
 
+
+// Watch scope for user login status change
   $scope.$watchCollection('UserService', function() {
     $scope.currentUser = UserService.currentUser;
   })

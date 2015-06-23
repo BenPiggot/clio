@@ -1,14 +1,17 @@
 ClioApp.controller('EditStudentModalCtrl', ['$scope', 'UserService', '$modalInstance', 'AddStudent','$routeParams',
   function($scope, UserService, $modalInstance, Student, $routeParams) {
 
-  console.log($routeParams)
 
+// http get request using Project service, renders all user projects
   Student.get({id: $routeParams.id}, function(data) {
     $scope.post = data
   })
 
+
+// http put request for updating student information made via Project service;
+// Only logged-in instructors are allowed to update this information.
   $scope.editStudent = function() {
-      Post.update({id: $scope.student.id},
+      AddStudent.update({id: $scope.student.id},
         {firstName: $scope.firstName,
         lastName: $scope.lastName,
         email: $scope.email},
@@ -18,6 +21,8 @@ ClioApp.controller('EditStudentModalCtrl', ['$scope', 'UserService', '$modalInst
     });
   }
 
+
+// Small function that closes modal
  $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
