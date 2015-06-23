@@ -1,6 +1,8 @@
 ClioApp.controller('TimelineShowCtrl',['$scope','$modal', '$routeParams', 'Project', 'Timeline', 'AddEvent', 'UserService', '$location','$route', 'StudentUserService',
     function($scope,$modal,$routeParams, Project, Timeline, AddEvent, UserService, $location, $route, StudentUserService) {
 
+
+// UserService and StudentUserService loaded into scope to watch for user/student user login
 $scope.UserService = UserService;
 
 $scope.StudentUserService = StudentUserService
@@ -13,20 +15,30 @@ $scope.$watchCollection('UserService', function() {
   $scope.currentUser = UserService.currentUser;
 })
 
+
+// Conditional statement to reroute unauthorized users to homepage
 if(!UserService.currentUser && !StudentUserService.currentStudentUser){
   $location.path('/');
 }
 
+
+// http get request that loads current project via Project service
 Project.get({id: $routeParams.projectId}, function(data) {
   $scope.project = data
 });
 
+
+// Logic that sets the height of the timeline depending on screen height;
+// Used primarily for tablet portrait views
 if (screen.height >= 1000) {
   $scope.height = 730
 } else {
   $scope.height = 550
 }
 
+
+// Array of events for timeline; AJAX database requery returns all associated events;
+// I then loop through the events to populate the the array
 $scope.date = []
   AddEvent.query({id: $routeParams.id}, function(eventData) {
     for (var i = 0; i < eventData.length; i++) {
@@ -38,6 +50,8 @@ $scope.date = []
     }
   })
 
+
+// Function that reners the timeline and associated events
 var TimelineCreate = function() {
   Timeline.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
 
@@ -70,11 +84,11 @@ var TimelineCreate = function() {
         });
     }
 
-
     TimelineCreate()
 
+
+// Function opens modal where students and users can add events
       $scope.newEvent = function() {
-        console.log('new event!!!!!')
       $modal.open({
         templateUrl:'/views/timeline/timelineEventModal.html',
         controller: 'TimelineEventModalCtrl'
@@ -92,6 +106,8 @@ var TimelineCreate = function() {
       });
     };
 
+
+// Function opens modal where instructors and students can edit the timeline
     $scope.editTimeline = function() {
     console.log('timeline edit!!!!!')
       $modal.open({
@@ -103,11 +119,14 @@ var TimelineCreate = function() {
     }
 
 
+// Function allows for view refresh without call to server
   $scope.reloadRoute = function() {
      $route.reload();
   }
 
 
+// Watch collection call designed so that timeline events are updated automatically via AJAX;
+// still trying to get this to work, so not currently included.
 // $scope.$watchCollection($scope.date, function(){
 //     $scope.date = []
 //       AddEvent.query({id: $routeParams.id}, function(eventData) {
@@ -152,10 +171,11 @@ var TimelineCreate = function() {
 //             });
 //         }
 
-
 //         TimelineCreate()
 //   })
 
+
+// Client-side logout function for instructors
    $scope.logout = function() {
       UserService.logout(function(err, data){
         $location.path('/')
@@ -163,6 +183,7 @@ var TimelineCreate = function() {
     }
 
 
+// Client-side logout function for students
    $scope.studentLogout = function() {
       StudentUserService.studentLogout(function(err, data){
         $location.path('/')

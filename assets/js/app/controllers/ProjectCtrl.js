@@ -17,7 +17,7 @@ ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService',
   })
 
 
-// array of images displayed to be desplayed randomly
+// Array of images displayed to be desplayed randomly
 var imageArray = [
 
   "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/EKN/67/0130/VN.JPG",
@@ -42,6 +42,7 @@ $scope.image = imageArray[number]
     $location.path('/');
   }
 
+
 // Page loads initially without project information
 $scope.projects = [];
 
@@ -58,8 +59,9 @@ $scope.projects = [];
     })
   } else {
   AlertService.add('danger', 'You cannot add a new project.')
+  }
 }
-}
+
 
 // Function that loads new projects associated with the logged-in instructor
   $scope.loadProjects = function() {
@@ -69,6 +71,7 @@ $scope.projects = [];
       $scope.projects = data;
     })
   }
+
 
 // Function that loads new projects associated with the logged-in student
   $scope.loadStudentProjects = function() {

@@ -1,7 +1,8 @@
 ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location', 'EditTimeline', 'StudentUserService', 'AlertService',
     function($scope,$modal,$routeParams, Project, UserService, $location, EditTimeline, StudentUserService, AlertService) {
-    console.log('timeline controller online')
 
+
+// UserService and StudentUserService loaded into scope to watch for user/student user login
   $scope.UserService = UserService;
 
   $scope.StudentUserService = StudentUserService
@@ -15,11 +16,13 @@ ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project',
   })
 
 
+// Conditional statement to reroute unauthorized users to homepage
  if(!UserService.currentUser && !StudentUserService.currentStudentUser){
     $location.path('/');
   }
 
 
+// Array of images displayed to be desplayed randomly
 var imageArray = [
 
   "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/EKN/67/0130/VN.JPG",
@@ -33,15 +36,19 @@ var imageArray = [
   // "http://i.imgur.com/jRJpU.jpg"
 ]
 
+// Functionality for displaying random images from imageArray
 var number = Math.floor(Math.random() * 8)
 
 $scope.image = imageArray[number]
 
 
+// http get request using Project service, renturns all user projects
   Project.get({id: $routeParams.id}, function(data) {
       $scope.project = data
    });
 
+
+// Function opens modal where students/instructors can create a new timeline
   $scope.newTimeline = function() {
       console.log('trying modal')
       $modal.open({
@@ -52,10 +59,11 @@ $scope.image = imageArray[number]
         console.log(data)
         $scope.project = data
       });
-      });
+    });
   }
 
 
+// http delete request allowing instructors to delete timelines
   $scope.deleteTimeline = function(timelineId) {
     if (UserService.currentUser){
       if (confirm("Are you sure you want to remove this timeline?")) {
@@ -71,6 +79,8 @@ $scope.image = imageArray[number]
     }
   }
 
+
+// Client-side logout function for instructors
  $scope.logout = function() {
     UserService.logout(function(err, data){
       $location.path('/')
@@ -78,6 +88,7 @@ $scope.image = imageArray[number]
   }
 
 
+// Client-side logout function for students
  $scope.studentLogout = function() {
     StudentUserService.studentLogout(function(err, data){
       $location.path('/')

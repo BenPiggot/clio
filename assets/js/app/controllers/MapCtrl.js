@@ -22,7 +22,7 @@ if(!UserService.currentUser && !StudentUserService.currentStudentUser){
 }
 
 
-// object of map themes from Mapbox API
+// Object of map themes from Mapbox API
   var tilesDict = {
       openstreetmap: {
           url: "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -66,8 +66,7 @@ if(!UserService.currentUser && !StudentUserService.currentStudentUser){
               mapid: 'mapbox.pirates'
           }
         }
-
-  }
+    }
 
 
 // http get request that loads current project via Project service

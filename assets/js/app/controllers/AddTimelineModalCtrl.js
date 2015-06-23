@@ -1,7 +1,7 @@
 ClioApp.controller('AddTimelineModalCtrl', ['$scope', 'UserService', '$modalInstance', 'AddTimeline', 'Project', '$routeParams',
   function($scope, UserService, $modalInstance, AddTimeline, Project, $routeParams) {
 
-// http get request using Project service, renders all user projects
+// http get request using Project service, renturns all user projects
   Project.get({id: $routeParams.id}, function(data) {
     $scope.project = data
   })
