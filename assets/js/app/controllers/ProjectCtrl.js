@@ -27,7 +27,8 @@ var imageArray = [
   "http://i.telegraph.co.uk/multimedia/archive/02530/thatcher1__1979-do_2530147k.jpg",
   "http://paperboat.studiopod.com/wp-content/uploads/2010/07/great-depression-soup-line-11.jpg",
   "http://upload.wikimedia.org/wikipedia/en/9/9a/Oxcart-train1947.jpg",
-  "http://www.thesundaytimes.co.uk/sto/multimedia/dynamic/00245/Spanish-Civil-War-1_245626k.jpg"
+  "../../images/spanish-civil-war.jpg"
+  // "http://www.thesundaytimes.co.uk/sto/multimedia/dynamic/00245/Spanish-Civil-War-1_245626k.jpg"
 ]
 
 // Functionality for displaying random images from imageArray
