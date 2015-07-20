@@ -51,7 +51,7 @@ $scope.date = []
   })
 
 
-// Function that reners the timeline and associated events
+// Function that renders the timeline and associated events
 var TimelineCreate = function() {
   Timeline.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
 
