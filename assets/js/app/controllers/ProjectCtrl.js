@@ -7,34 +7,31 @@ ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService',
 
   $scope.$watchCollection('UserService', function() {
     $scope.currentUser = UserService.currentUser;
-
-  })
+  });
 
   $scope.StudentUserService = StudentUserService
 
   $scope.$watchCollection('StudentUserService', function() {
     $scope.currentStudentUser = StudentUserService.currentStudentUser;
-  })
+  });
 
 
-// Array of images displayed to be desplayed randomly
-var imageArray = [
-  "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/EKN/67/0130/VN.JPG",
-  "http://citelighter-cards.s3.amazonaws.com/p179jerr2r1c2b19so8hjc2q1ev80_18242.jpg",
-  "https://globalizingmexico.files.wordpress.com/2012/03/revsoldiers1.jpg",
-  "http://i.ytimg.com/vi/5110UES-QzE/maxresdefault.jpg",
-  "http://www.penccil.com/files/table/U_58_370892199427_09_Burri_ErnestoCheGuevara_Kuba_1963_01.jpg",
-  "http://i.telegraph.co.uk/multimedia/archive/02530/thatcher1__1979-do_2530147k.jpg",
-  "http://paperboat.studiopod.com/wp-content/uploads/2010/07/great-depression-soup-line-11.jpg",
-  "http://upload.wikimedia.org/wikipedia/en/9/9a/Oxcart-train1947.jpg",
-  "../../images/spanish-civil-war.jpg"
-  // "http://www.thesundaytimes.co.uk/sto/multimedia/dynamic/00245/Spanish-Civil-War-1_245626k.jpg"
-]
+  // Array of images displayed to be desplayed randomly
+  var imageArray = [
+    "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/EKN/67/0130/VN.JPG",
+    "http://citelighter-cards.s3.amazonaws.com/p179jerr2r1c2b19so8hjc2q1ev80_18242.jpg",
+    "https://globalizingmexico.files.wordpress.com/2012/03/revsoldiers1.jpg",
+    "http://i.ytimg.com/vi/5110UES-QzE/maxresdefault.jpg",
+    "http://www.penccil.com/files/table/U_58_370892199427_09_Burri_ErnestoCheGuevara_Kuba_1963_01.jpg",
+    "http://i.telegraph.co.uk/multimedia/archive/02530/thatcher1__1979-do_2530147k.jpg",
+    "http://paperboat.studiopod.com/wp-content/uploads/2010/07/great-depression-soup-line-11.jpg",
+    "http://upload.wikimedia.org/wikipedia/en/9/9a/Oxcart-train1947.jpg",
+    "../../images/spanish-civil-war.jpg"
+  ];
 
-// Functionality for displaying random images from imageArray
-var number = Math.floor(Math.random() * 9)
-
-$scope.image = imageArray[number]
+  // Functionality for displaying random images from imageArray
+  var number = Math.floor(Math.random() * 9);
+  $scope.image = imageArray[number];
 
 
 // Conditional statement to reroute unauthorized users to homepage
@@ -44,7 +41,7 @@ $scope.image = imageArray[number]
 
 
 // Page loads initially without project information
-$scope.projects = [];
+  $scope.projects = [];
 
 
 // Function that opens modal allowing logged-in instructors to create new projects;
@@ -58,7 +55,7 @@ $scope.projects = [];
     $scope.loadProjects();
     })
   } else {
-  AlertService.add('danger', 'You cannot add a new project.')
+    AlertService.add('danger', 'You cannot add a new project.');
   }
 }
 
@@ -67,7 +64,7 @@ $scope.projects = [];
   $scope.loadProjects = function() {
     console.log('load posts working')
     Project.query({userId: UserService.currentUser.id},function(data) {
-      AlertService.clear()
+      AlertService.clear();
       $scope.projects = data;
     })
   }
@@ -82,7 +79,7 @@ $scope.projects = [];
         }
       }
       AlertService.clear()
-    })
+    });
   }
 
 
@@ -98,15 +95,15 @@ if (StudentUserService.currentStudentUser) {
 // Client-side logout function for instructors
  $scope.logout = function() {
     UserService.logout(function(err, data){
-      $location.path('/')
-    })
+      $location.path('/');
+    });
   }
 
 
 // Client-side logout function for students
  $scope.studentLogout = function() {
-    StudentUserService.studentLogout(function(err, data){
-      $location.path('/')
-    })
+    StudentUserService.studentLogout(function(err, data) {
+      $location.path('/');
+    });
   }
 }])

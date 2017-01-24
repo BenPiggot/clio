@@ -3,8 +3,7 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
 
 // UserService and StudentUserService loaded into scope to watch for user/student user login
   $scope.UserService = UserService;
-
-  $scope.StudentUserService = StudentUserService
+  $scope.StudentUserService = StudentUserService;
 
   $scope.$watchCollection('StudentUserService', function() {
     $scope.currentStudentUser = StudentUserService.currentStudentUser;
@@ -17,7 +16,7 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
 
 // http get request that loads current project via Project service
   Project.get({id: $routeParams.id}, function(data) {
-    $scope.project = data
+    $scope.project = data;
   });
 
 
@@ -36,9 +35,8 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
         controller: 'AddStudentModalCtrl'
       }).result.then(function(){
         Project.get({id: $routeParams.id}, function(data) {
-        console.log(data)
-        $scope.project = data
-      });
+          $scope.project = data
+        });
       });
     }
     else {
@@ -57,7 +55,7 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
           Project.get({id: $routeParams.id}, function(data) {
             $scope.project = data
           });
-        })
+        });
       }
     } else {
       AlertService.add('danger', 'You cannot edit the student list.')
@@ -71,27 +69,26 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
     $modal.open({
       templateUrl: '/views/projects/editStudentModal.html',
       controller: 'EditStudentModalCtrl'
-    })
-    console.log('create modal firing')
+    });
   }
 
 
 // Function opening modal allowing logged-in users to edit current project details;
 // Callback then re-renders the view with updated project infomration.
   $scope.newProject = function() {
-   if (UserService.currentUser) {
-    $modal.open({
-      templateUrl: '/views/projects/editProjectModal.html',
-      controller: 'EditProjectModalCtrl'
-    }).result.then(function(){
-    Project.get({id: $routeParams.id}, function(data) {
-      console.log(data)
-      $scope.project = data
-    });
-  })
-  } else {
-    AlertService.add('danger', 'You cannot edit this project.')
-  }
+    if (UserService.currentUser) {
+      $modal.open({
+        templateUrl: '/views/projects/editProjectModal.html',
+        controller: 'EditProjectModalCtrl'
+      }).result.then(function(){
+        Project.get({id: $routeParams.id}, function(data) {
+          console.log(data)
+          $scope.project = data
+        });
+      });
+    } else {
+      AlertService.add('danger', 'You cannot edit this project.')
+    }
   }
 
 
@@ -104,9 +101,8 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
         controller: 'AddTimelineModalCtrl'
       }).result.then(function(){
         Project.get({id: $routeParams.id}, function(data) {
-        console.log(data)
-        $scope.project = data
-      });
+          $scope.project = data;
+        });
       });
     } else {
       AlertService.add('danger', 'You cannot add a timeline for this project.')
@@ -117,7 +113,7 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
 // Client-side logout function for instructors
  $scope.logout = function() {
     UserService.logout(function(err, data){
-      $location.path('/')
+      $location.path('/');
     })
   }
 
@@ -125,8 +121,8 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
 // Client-side logout function for students
  $scope.studentLogout = function() {
     StudentUserService.studentLogout(function(err, data){
-      $location.path('/')
-    })
+      $location.path('/');
+    });
   }
 
 
@@ -138,7 +134,4 @@ ClioApp.controller('ProjectShowCtrl',['$scope','$rootScope','$modal','AlertServi
       controller: 'AuthLoginModalCtrl'
     })
   }
-
-
-
 }]);

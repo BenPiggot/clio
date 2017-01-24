@@ -178,6 +178,4 @@ $scope.editMap = function() {
       $location.path('/')
     })
   }
-
-
-}])
+}]);
