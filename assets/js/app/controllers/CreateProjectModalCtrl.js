@@ -3,14 +3,14 @@ ClioApp.controller('CreateProjectModalCtrl', ['$scope', 'UserService', '$modalIn
 
 // http post request that adds new project with user specifications to database via AddTimeline service
   $scope.createProject = function() {
-     var project = new Project();
-     project.name = $scope.name;
-     project.description = $scope.description;
-     project.medium = $scope.medium;
-     project.userId = UserService.currentUser.id
-     project.$save(function(data){
-        $modalInstance.close();
-      });
+    var project = new Project();
+    project.name = $scope.name;
+    project.description = $scope.description;
+    project.medium = $scope.medium;
+    project.userId = UserService.currentUser.id
+    project.$save(function(data){
+       $modalInstance.close();
+     });
 
   }
 
