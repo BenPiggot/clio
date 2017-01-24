@@ -1,11 +1,7 @@
 ClioApp.factory('StudentUserService', ['$http', 'AlertService', function($http, AlertService) {
 
-
-
   return {
-
     studentLogin: function(email, callback) {
-
       var self = this;
 
       $http.post('/api/studentAuth', {email: email})
@@ -24,7 +20,6 @@ ClioApp.factory('StudentUserService', ['$http', 'AlertService', function($http, 
     },
 
     studentCheck: function(callback) {
-      console.log("student login firing")
       var self = this;
 
       $http.get('/api/studentAuth')
@@ -45,7 +40,6 @@ ClioApp.factory('StudentUserService', ['$http', 'AlertService', function($http, 
     studentLogout: function(callback) {
       this.currentStudentUser = false;
 
-      console.log("It happened!!!!")
       $http.delete('/api/studentAuth')
       .success(function(data) {
         callback(null, data);
@@ -56,5 +50,4 @@ ClioApp.factory('StudentUserService', ['$http', 'AlertService', function($http, 
       });
     }
   }
-
-}])
+}]);

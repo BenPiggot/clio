@@ -1,18 +1,13 @@
 ClioApp.factory('UserService', ['$http', 'AlertService', function($http, AlertService) {
 
-
-
   return {
-
     login: function(email, password, callback) {
-
       var self = this;
 
       $http.post('/api/auth', {email: email, password: password})
       .success(function(data) {
         if(data && data.result && data.user) {
           self.currentUser = data.user;
-
         } else {
           self.currentUser = false;
         }
@@ -24,7 +19,6 @@ ClioApp.factory('UserService', ['$http', 'AlertService', function($http, AlertSe
     },
 
     check: function(callback) {
-
       var self = this;
 
       $http.get('/api/auth')
