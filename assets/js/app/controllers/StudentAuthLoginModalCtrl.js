@@ -21,5 +21,4 @@ ClioApp.controller('StudentAuthLoginModalCtrl', ['$scope', 'StudentUserService',
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-
-}])
+}]);
