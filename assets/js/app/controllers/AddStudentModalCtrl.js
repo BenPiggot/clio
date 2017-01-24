@@ -7,19 +7,19 @@ ClioApp.controller('AddStudentModalCtrl', ['$scope', 'UserService', '$modalInsta
   })
 
 // http post request that adds new studetn to database via AddStudent service
-    $scope.addStudent = function() {
-      var student = new AddStudent()
-      student.firstName = $scope.firstName;
-      student.lastName = $scope.lastName;
-      student.email = $scope.email;
-      student.$save({projectId: $scope.project.id}, function(data) {
-        $scope.project = data;
-        $modalInstance.close();
-      })
-    }
+  $scope.addStudent = function() {
+    var student = new AddStudent()
+    student.firstName = $scope.firstName;
+    student.lastName = $scope.lastName;
+    student.email = $scope.email;
+    student.$save({projectId: $scope.project.id}, function(data) {
+      $scope.project = data;
+      $modalInstance.close();
+    });
+  }
 
 // Small function that closes modal
-   $scope.cancel = function () {
+  $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
 

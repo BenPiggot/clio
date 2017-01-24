@@ -90,14 +90,12 @@ ClioApp.controller('AddMapModalCtrl', ['$scope', 'UserService', '$modalInstance'
      }
       var map = new AddMap()
       map.name = $scope.name;
-      map.description = $scope.description
+      map.description = $scope.description;
       map.country = $scope.country;
       map.city = $scope.city;
       map.zoom = zoom;
       map.theme = theme;
       map.$save({projectId: $scope.project.id}, function(data) {
-        console.log('map created')
-        console.log(data)
         $scope.project = data;
         $modalInstance.close();
       })
