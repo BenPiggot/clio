@@ -11,12 +11,13 @@ ClioApp.controller('EditStudentModalCtrl', ['$scope', 'UserService', '$modalInst
 // http put request for updating student information made via Project service;
 // Only logged-in instructors are allowed to update this information.
   $scope.editStudent = function() {
-      AddStudent.update({id: $scope.student.id},
-        {firstName: $scope.firstName,
+    AddStudent.update({id: $scope.student.id},
+      {
+        firstName: $scope.firstName,
         lastName: $scope.lastName,
-        email: $scope.email},
-        function(data){
-      console.log('updated',data);
+        email: $scope.email}
+      },
+      function(data){
         $modalInstance.close();
     });
   }
@@ -26,5 +27,4 @@ ClioApp.controller('EditStudentModalCtrl', ['$scope', 'UserService', '$modalInst
  $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-
-}])
+}]);

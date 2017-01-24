@@ -1,5 +1,5 @@
 ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', 'StudentUserService', 'AlertService',
-     function($scope, $rootScope, $modal, UserService, StudentUserService, AlertService) {
+  function($scope, $rootScope, $modal, UserService, StudentUserService, AlertService) {
 
 
 // Get UserService to check for login status changes
@@ -17,22 +17,20 @@ var imageArray = [
   "http://i.telegraph.co.uk/multimedia/archive/02530/thatcher1__1979-do_2530147k.jpg",
   "http://paperboat.studiopod.com/wp-content/uploads/2010/07/great-depression-soup-line-11.jpg"
 
-]
+];
 
 
 // Functionality for displaying random images from imageArray
-var number = Math.floor(Math.random() * 7)
-
-$scope.image = imageArray[number]
+var number = Math.floor(Math.random() * 7);
+$scope.image = imageArray[number];
 
 
 // Function that displays login modal for student users
   $scope.showStudentLogin = function() {
-    console.log('student modal working')
     $modal.open({
       templateUrl: '/views/auth/studentLoginModal.html',
       controller: 'StudentAuthLoginModalCtrl'
-    })
+    });
   }
 
 
@@ -41,26 +39,23 @@ $scope.image = imageArray[number]
     $modal.open({
       templateUrl: '/views/auth/loginModal.html',
       controller: 'AuthLoginModalCtrl'
-    })
+    });
   }
 
 
 // Function that displays signup modal
   $scope.showSignup = function() {
-    console.log('sign up modal firing')
     $modal.open({
       templateUrl: '/views/user/SignupModal.html',
       controller: 'SignupModalCtrl'
     }).result.then(function(data) {
       console.log(data)
-    })
+    });
   }
 
 
 // Watch scope for user login status change
   $scope.$watchCollection('UserService', function() {
     $scope.currentUser = UserService.currentUser;
-  })
-
-
-}])
+  });
+}]);
