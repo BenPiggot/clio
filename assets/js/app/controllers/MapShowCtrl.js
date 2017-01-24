@@ -4,8 +4,7 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
 
 // UserService and StudentUserService loaded into scope to watch for user/student user login
   $scope.UserService = UserService;
-
-  $scope.StudentUserService = StudentUserService
+  $scope.StudentUserService = StudentUserService;
 
   $scope.$watchCollection('StudentUserService', function() {
     $scope.currentStudentUser = StudentUserService.currentStudentUser;
@@ -22,7 +21,7 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
   }
 
   Project.get({id: $routeParams.projectId}, function(data) {
-    $scope.project = data
+    $scope.project = data;
   });
 
 
@@ -74,23 +73,23 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
 
 
 // Map and markers are hidden at first because of asynchronous loading patterns
-   $scope.mapShow = false;
-   $scope.markers = []
+  $scope.mapShow = false;
+  $scope.markers = [];
 
 
 // Function that makes database request for all markers associated with the current map
   AddMarker.query({id: $routeParams.id}, function(markerData) {
     for (var i = 0; i < markerData.length; i++) {
       $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
-                             message: markerData[i].description, draggable: false})
+                             message: markerData[i].description, draggable: false});
     }
   })
 
 // Function that makes a database request for the current map
   Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
-       $scope.map = data[0]
-       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
-    })
+    $scope.map = data[0];
+    $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme);
+  });
 
 
 // Function that renders Leaflet.js map on page load; utilizes
@@ -108,10 +107,8 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
             scrollWheelZoom: false
           },
           tiles: theme
-        })
-
-      $scope.markers
-
+        });
+      $scope.markers;
       $scope.mapShow = true;
     }
 
@@ -141,24 +138,23 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
   };
 
 
-// Function that opens modal allowing for logged in user to edit map;
-// Function callback re-renders page including with new map characteristics
-$scope.editMap = function() {
- $modal.open({
+  // Function that opens modal allowing for logged in user to edit map;
+  // Function callback re-renders page including with new map characteristics
+  $scope.editMap = function() {
+    $modal.open({
       templateUrl:'/views/maps/editMapModal.html',
       controller: 'EditMapModalCtrl'
     }).result.then(function(data){
-      console.log(data)
       AddMarker.query({id: $routeParams.id}, function(markerData) {
         for (var i = 0; i < markerData.length; i++) {
             console.log(markerData[i])
             $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
-                                   message: markerData[i].description, draggable: false})
+                                   message: markerData[i].description, draggable: false});
         }
       })
       Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
-       $scope.map = data[0]
-       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
+        $scope.map = data[0];
+        $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme);
       })
     });
   }
@@ -167,15 +163,15 @@ $scope.editMap = function() {
 // Client-side logout function for instructors
  $scope.logout = function() {
     UserService.logout(function(err, data){
-      $location.path('/')
-    })
+      $location.path('/');
+    });
   }
 
 
 // Client-side logout function for students
  $scope.studentLogout = function() {
     StudentUserService.studentLogout(function(err, data){
-      $location.path('/')
-    })
+      $location.path('/');
+    });
   }
 }]);
