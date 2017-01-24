@@ -18,7 +18,7 @@ ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService',
 
   // Array of images displayed to be desplayed randomly
   var imageArray = [
-    "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/EKN/67/0130/VN.JPG",
+    "../../images/vietnam.jpg",
     "http://citelighter-cards.s3.amazonaws.com/p179jerr2r1c2b19so8hjc2q1ev80_18242.jpg",
     "https://globalizingmexico.files.wordpress.com/2012/03/revsoldiers1.jpg",
     "http://i.ytimg.com/vi/5110UES-QzE/maxresdefault.jpg",

@@ -1,11 +1,10 @@
 ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project', 'UserService', '$location', 'EditTimeline', 'StudentUserService', 'AlertService',
-    function($scope,$modal,$routeParams, Project, UserService, $location, EditTimeline, StudentUserService, AlertService) {
+  function($scope,$modal,$routeParams, Project, UserService, $location, EditTimeline, StudentUserService, AlertService) {
 
 
 // UserService and StudentUserService loaded into scope to watch for user/student user login
   $scope.UserService = UserService;
-
-  $scope.StudentUserService = StudentUserService
+  $scope.StudentUserService = StudentUserService;
 
   $scope.$watchCollection('StudentUserService', function() {
     $scope.currentStudentUser = StudentUserService.currentStudentUser;
@@ -24,7 +23,7 @@ ClioApp.controller('TimelineCtrl',['$scope','$modal', '$routeParams', 'Project',
 
 // Array of images displayed to be desplayed randomly
 var imageArray = [
-  "https://static.awm.gov.au/images/collection/items/ACCNUM_SCREEN/EKN/67/0130/VN.JPG",
+  "../../images/vietnam.jpg",
   "http://citelighter-cards.s3.amazonaws.com/p179jerr2r1c2b19so8hjc2q1ev80_18242.jpg",
   "https://globalizingmexico.files.wordpress.com/2012/03/revsoldiers1.jpg",
   "http://i.ytimg.com/vi/5110UES-QzE/maxresdefault.jpg",
@@ -33,7 +32,6 @@ var imageArray = [
   "http://paperboat.studiopod.com/wp-content/uploads/2010/07/great-depression-soup-line-11.jpg",
   "http://upload.wikimedia.org/wikipedia/en/9/9a/Oxcart-train1947.jpg",
   "../../images/spanish-civil-war.jpg"
-  // "http://www.thesundaytimes.co.uk/sto/multimedia/dynamic/00245/Spanish-Civil-War-1_245626k.jpg"
 ]
 
 // Functionality for displaying random images from imageArray

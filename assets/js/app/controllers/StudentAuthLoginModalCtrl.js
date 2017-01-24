@@ -6,17 +6,15 @@ ClioApp.controller('StudentAuthLoginModalCtrl', ['$scope', 'StudentUserService',
   $scope.studentLogin = function() {
     StudentUserService.studentLogin($scope.email, function(err, data) {
       if(err) {
-        console.log(err)
         alert('something horrible happened.');
       } else if (data && data.result) {
         $modalInstance.close();
         $location.path('/projects')
 
       } else {
-        console.log(data)
         alert('unable to log in')
       }
-    })
+    });
   }
 
 // Small function that closes modal
