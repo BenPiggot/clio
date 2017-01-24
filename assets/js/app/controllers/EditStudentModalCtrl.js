@@ -15,7 +15,7 @@ ClioApp.controller('EditStudentModalCtrl', ['$scope', 'UserService', '$modalInst
       {
         firstName: $scope.firstName,
         lastName: $scope.lastName,
-        email: $scope.email}
+        email: $scope.email
       },
       function(data){
         $modalInstance.close();
