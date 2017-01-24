@@ -5,15 +5,15 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
 // UserService and StudentUserService loaded into scope to watch for user/student user login
   $scope.UserService = UserService;
 
-  $scope.StudentUserService = StudentUserService
+  $scope.StudentUserService = StudentUserService;
 
   $scope.$watchCollection('StudentUserService', function() {
     $scope.currentStudentUser = StudentUserService.currentStudentUser;
-  })
+  });
 
   $scope.$watchCollection('UserService', function() {
     $scope.currentUser = UserService.currentUser;
-  })
+  });
 
 
 // Conditional statement to reroute unauthorized users to homepage
@@ -75,7 +75,7 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
 
 // Map and markers are hidden at first because of asynchronous loading patterns
    $scope.mapShow = false;
-   $scope.markers = []
+   $scope.markers = [];
 
 
 // Function that makes database request for all markers associated with the current map
@@ -84,59 +84,51 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
       $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
                              message: markerData[i].description, draggable: false})
     }
-  })
+  });
 
 // Function that makes a database request for the current map
   Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
-       $scope.map = data[0]
-       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
-    })
+    $scope.map = data[0];
+    $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme);
 
 
 // Function that renders Leaflet.js map on page load; utilizes
 // Angular Leaflet directives from https://github.com/tombatossals/angular-leaflet-directive
 // Note that map and markers display once this function's code executes
   $scope.mapRenderInit = function(lat, lng, zoom, markers, theme) {
-    console.log(tilesDict.mapbox_pirates)
-      angular.extend($scope, {
-          center: {
-            lat: lat || 35,
-            lng: lng || 30,
-            zoom: zoom || 2
-          },
-          defaults: {
-            scrollWheelZoom: false
-          },
-          tiles: theme
-        })
-
-      $scope.markers
-
-      $scope.mapShow = true;
-    }
+    angular.extend($scope, {
+      center: {
+        lat: lat || 35,
+        lng: lng || 30,
+        zoom: zoom || 2
+      },
+      defaults: {
+        scrollWheelZoom: false
+      },
+      tiles: theme
+    });
+    $scope.markers;
+    $scope.mapShow = true;
+  }
 
 
 // Function that opens modal allowing logged in users to create new markers;
 // Function callback re-renders page including new marker
   $scope.newMarker = function() {
-    console.log('new marker!!!!!')
     $modal.open({
       templateUrl:'/views/maps/mapMarkerModal.html',
       controller: 'MapMarkerModalCtrl'
     }).result.then(function(data){
-        console.log("added")
-        console.log(data)
       AddMarker.query({id: $routeParams.id}, function(markerData) {
         for (var i = 0; i < markerData.length; i++) {
-            console.log(markerData[i])
             $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
                                    message: markerData[i].description, draggable: false})
         }
       })
       Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
-       $scope.map = data[0]
-       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
-      })
+        $scope.map = data[0]
+        $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
+      });
     });
   };
 
@@ -148,18 +140,16 @@ $scope.editMap = function() {
       templateUrl:'/views/maps/editMapModal.html',
       controller: 'EditMapModalCtrl'
     }).result.then(function(data){
-      console.log(data)
       AddMarker.query({id: $routeParams.id}, function(markerData) {
         for (var i = 0; i < markerData.length; i++) {
-            console.log(markerData[i])
-            $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
-                                   message: markerData[i].description, draggable: false})
+          $scope.markers.push({lat: markerData[i].latitude, lng: markerData[i].longitude,
+                                 message: markerData[i].description, draggable: false})
         }
       })
       Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
-       $scope.map = data[0]
-       $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
-      })
+        $scope.map = data[0];
+        $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme);
+      });
     });
   }
 
@@ -168,7 +158,7 @@ $scope.editMap = function() {
  $scope.logout = function() {
     UserService.logout(function(err, data){
       $location.path('/')
-    })
+    });
   }
 
 
@@ -176,8 +166,6 @@ $scope.editMap = function() {
  $scope.studentLogout = function() {
     StudentUserService.studentLogout(function(err, data){
       $location.path('/')
-    })
+    });
   }
-
-
-}])
+}]);
