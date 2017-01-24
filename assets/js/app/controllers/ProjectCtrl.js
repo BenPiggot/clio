@@ -29,7 +29,7 @@ ClioApp.controller('ProjectCtrl',['$scope','$rootScope','$modal','AlertService',
     "http://upload.wikimedia.org/wikipedia/en/9/9a/Oxcart-train1947.jpg",
     "../../images/spanish-civil-war.jpg"
     // "http://www.thesundaytimes.co.uk/sto/multimedia/dynamic/00245/Spanish-Civil-War-1_245626k.jpg"
-  ]
+  ];
 
   // Functionality for displaying random images from imageArray
   var number = Math.floor(Math.random() * 9);

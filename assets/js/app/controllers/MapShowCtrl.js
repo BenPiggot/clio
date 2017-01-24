@@ -126,7 +126,7 @@ ClioApp.controller('MapShowCtrl',['$scope','$modal', '$routeParams', '$location'
         }
       })
       Map.query({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
-        $scope.map = data[0]
+        $scope.map = data[0];
         $scope.mapRenderInit($scope.map.latitude, $scope.map.longitude, $scope.map.zoom, $scope.markers, $scope.map.theme)
       });
     });

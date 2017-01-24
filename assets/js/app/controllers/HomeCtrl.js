@@ -1,5 +1,5 @@
 ClioApp.controller('HomeCtrl',['$scope','$rootScope','$modal', 'UserService', 'StudentUserService', 'AlertService',
-  function($scope, $rootScope, $modal, UserService, StudentUserService, AlertService) {
+    function($scope, $rootScope, $modal, UserService, StudentUserService, AlertService) {
 
 
 // Get UserService to check for login status changes

@@ -4,7 +4,7 @@ ClioApp.controller('MapMarkerModalCtrl', ['$scope', 'UserService', '$modalInstan
 
 // http get request that loads current map via Map service
   Map.get({projectId: $routeParams.projectId, id: $routeParams.id}, function(data) {
-    $scope.map = data[0]
+    $scope.map = data[0];
   });
 
 
@@ -14,7 +14,7 @@ ClioApp.controller('MapMarkerModalCtrl', ['$scope', 'UserService', '$modalInstan
     console.log('awesome')
     var marker = new AddMarker()
     marker.address = $scope.address;
-    marker.city = $scope.city;
+    marker.city = $scope.city
     marker.country = $scope.country;
     marker.description = $scope.description;
     marker.image = $scope.image;
