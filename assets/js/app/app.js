@@ -2,16 +2,13 @@ var ClioApp = angular.module('ClioApp', ['ngRoute', 'ngResource', 'ui.bootstrap'
 
 
 ClioApp.run(['$rootScope', 'UserService', 'AlertService', function($rootScope, UserService, AlertService) {
-  console.log('app is up and running')
+  $rootScope.$on('$routeChangeStart', function(event, next, current) {
+    AlertService.clear()
+  });
 
-      $rootScope.$on('$routeChangeStart', function(event, next, current) {
-        AlertService.clear()
-      });
-
-      UserService.check(function(err, data) {
-        console.log('check', err, data)
-      });
-
+  UserService.check(function(err, data) {
+    console.log('check', err, data)
+  });
 }]);
 
 
@@ -29,7 +26,7 @@ ClioApp.config(['$routeProvider', '$locationProvider', function($routeProvider, 
     templateUrl: '/views/projects/index.html',
     controller: 'ProjectCtrl'
   })
- .when('/projects/:id', {
+  .when('/projects/:id', {
     templateUrl: '/views/projects/show.html',
     controller: 'ProjectShowCtrl'
   })
@@ -60,5 +57,4 @@ ClioApp.config(['$routeProvider', '$locationProvider', function($routeProvider, 
   .otherwise({
     templateUrl: '/views/404.html'
   })
-
 }])

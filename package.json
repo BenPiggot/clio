@@ -36,8 +36,8 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/wbp/clio.git"
+    "url": "git://github.com/BenPiggot/clio.git"
   },
-  "author": "wbp",
+  "author": "BenPiggot",
   "license": ""
 }
