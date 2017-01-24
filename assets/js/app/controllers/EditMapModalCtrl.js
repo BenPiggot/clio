@@ -51,49 +51,47 @@ var tilesDict = {
 // http put request to update map parameters made via Edit Map service;
 // User zoom and theme inputs are transformed prior to http request
     $scope.updateMap = function() {
-      var zoom
-      var theme
+      var zoom;
+      var theme;
       if($scope.zoom) {
-       if ($scope.zoom === "Neighborhood") {
-        zoom = 14
-       } else if ($scope.zoom === "City") {
-        zoom = 10
-       } else if ($scope.zoom === "Region") {
-        zoom = 8
-       } else if ($scope.zoom === "Country") {
-       zoom = 5
-       } else if ($scope.zoom === "Continent") {
-        zoom = 4
-       } else if ($scope.zoom === "World") {
-        zoom = 2
-       }
-     }
-     if($scope.theme) {
-      if ($scope.theme === "18th Century") {
-          theme = tilesDict.mapbox_pirates
-       }
-       else if ($scope.theme === "Grayscale") {
-          theme = tilesDict.mapbox_light
-       }
-       else if ($scope.theme === "Physical Features") {
-          theme = tilesDict.mapbox_outdoors
-       }
-       else {
-         theme = tilesDict.openstreetmap
-       }
-     }
+        if ($scope.zoom === "Neighborhood") {
+         zoom = 14;
+        } else if ($scope.zoom === "City") {
+         zoom = 10;
+        } else if ($scope.zoom === "Region") {
+         zoom = 8;
+        } else if ($scope.zoom === "Country") {
+        zoom = 5;
+        } else if ($scope.zoom === "Continent") {
+         zoom = 4;
+        } else if ($scope.zoom === "World") {
+         zoom = 2;
+        }
+      } 
+
+      if ($scope.theme) {
+        if ($scope.theme === "18th Century") {
+          theme = tilesDict.mapbox_pirates;
+        } else if ($scope.theme === "Grayscale") {
+          theme = tilesDict.mapbox_light;
+        } else if ($scope.theme === "Physical Features") {
+          theme = tilesDict.mapbox_outdoors;
+        } else {
+          theme = tilesDict.openstreetmap;
+        }
+      }
+
       EditMap.update({id: $routeParams.id},
-        {name: $scope.name,
-         description: $scope.description,
-         country: $scope.country,
-         city: $scope.city,
-         zoom: zoom,
-         theme: theme},
+        {
+          name: $scope.name,
+          description: $scope.description,
+          country: $scope.country,
+          city: $scope.city,
+          zoom: zoom,
+          theme: theme
+        },
         function(data){
-        console.log('updated',data);
-        $modalInstance.close();
+          $modalInstance.close();
       });
     }
-
-}])
-
+}]);
