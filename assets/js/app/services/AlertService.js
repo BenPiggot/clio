@@ -20,5 +20,4 @@ ClioApp.factory('AlertService', [function(){
       alerts.splice(idx, 1)
     }
   }
-
 }]);
